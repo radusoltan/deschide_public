@@ -22,14 +22,28 @@ export const BlockNews = ({locale}) => {
         <div className="flex-shrink max-w-full w-full lg:w-2/3">
           <div className="w-full py-3">
             <h2 className="text-gray-800 text-2xl font-bold font-category">
-              <span className="inline-block h-5 border-l-2 border-red-600 mr-2"></span>{t('homepage.last_news')}
+              <span className="inline-block h-5 border-x-4 border-red-600 mr-2"></span>{t('homepage.last_news')}
             </h2>
           </div>
+          <div className="flex flex-row flex-wrap -mx-3">
+            {articles}
+          </div>
         </div>
-        <div className="flex flex-row flex-wrap -mx-3">
-          {articles}
 
+        {/* Right */}
+        <div className="flex-shrink max-w-full w-full lg:w-1/3 lg:pl-8 lg:pt-14 lg:pb-8 order-first lg:order-last">
+          <div className="w-full bg-gray-50 h-full">
+            <div className="text-sm py-6 sticky top-0">
+              <div className="w-full text-center">
+                <a className="uppercase" href="#">Advertisement</a>
+                <a href="#">
+                  <img className="mx-auto" src="/img/ads/250.jpg" alt="advertisement area"/>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
+
       </div>
     </div>
   </div>

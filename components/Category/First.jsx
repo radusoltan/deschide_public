@@ -45,9 +45,9 @@ export const CategoryFirstArticle = ({locale, article})=> {
           }</h2>
         </Link>
         <p className="text-gray-100 hidden sm:inline-block font-text" dangerouslySetInnerHTML={{
-          __html: translations.find(t => t.locale === locale).lead ?
-              translations.find(t => t.locale === locale).lead.substring(0, 150) :
-              translations.find(t => t.locale === locale).body.substring(0, 150)
+          __html: translations.find(t => t.locale === locale)?.lead ?
+              translations.find(t => t.locale === locale)?.lead.substring(0, 150) :
+              translations.find(t => t.locale === locale)?.body.substring(0, 150)
         }} />
         {/* author and date */}
         <div className="pt-2">

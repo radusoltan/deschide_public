@@ -49,17 +49,17 @@ export const CategoryArticleItem = ({locale, article})=>{
         </h3>
         <p className="hidden md:block text-gray-600 leading-tight mb-1 font-text font-light"
            dangerouslySetInnerHTML={{__html:
-             translations.find(t=>t.locale===locale).lead ?
-               translations.find(t=>t.locale===locale).lead.substring(0,150) :
-               translations.find(t=>t.locale===locale)?.body.substring(0,150)
+             translations.find(t=>t.locale===locale)?.lead ?
+               translations.find(t=>t.locale===locale)?.lead.substring(0,150) + '...' :
+               translations.find(t=>t.locale===locale)?.body.substring(0,150) + '...'
           }}
         />
-        <Link className="text-gray-500" href={
-          `/${locale}/articles/${category.translations.find(t => t.locale === locale).slug}`
-        }><span
-            className="inline-block h-3 border-l-2 border-red-600 mr-2 font-category"></span>{
-          category.translations.find(t => t.locale === locale).title
-        }</Link>
+        {/*<Link className="text-gray-500" href={*/}
+        {/*  `/${locale}/articles/${category.translations.find(t => t.locale === locale).slug}`*/}
+        {/*}><span*/}
+        {/*    className="inline-block h-3 border-l-2 border-red-600 mr-2 font-category"></span>{*/}
+        {/*  category.translations.find(t => t.locale === locale).title*/}
+        {/*}</Link>*/}
       </div>
     </div>
   </div></Suspense>

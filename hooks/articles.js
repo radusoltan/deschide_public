@@ -21,10 +21,16 @@ export const useHomePageData = ({locale}) => {
 
   })
 
+  const {data: editorials} = useSWR(`/home/${locale}/editorial`, async ()=>{
+    const response = await fetch(`/${locale}/articles/api/editorials`)
+    return await response.json()
+  })
+
   return {
     featuredArticles,
     lastArticles,
-    specialArticle
+    specialArticle,
+    editorials
   }
 
 }
