@@ -1,21 +1,21 @@
 import {NextResponse} from "next/server";
 import {client} from "@/lib/elascticsearch";
 
-export async function GET(request, {params: {locale, category}}) {
+export const GET = async (req, {params: {locale}})=>{
 
   const articles = await client.search({
     body: {
       query: {
         bool: {
           must: [
-            { match: { "category.translations.locale": locale } },
-            { match: { "category.translations.slug": category } },
+            { match: { "category.id": 5 } },
             { match: { "translations.locale": locale } }
           ]
         }
       },
+      size: 9,
       sort: [
-        { "translations.published_at": {"order": "desc", "format": "strict_date_optional_time_nanos"} }
+        { "translations.published_at": {order: "desc", "format": "strict_date_optional_time_nanos"} }
       ]
     }
   })
