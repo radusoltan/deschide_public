@@ -2,7 +2,7 @@
 import useSWR from 'swr'
 import axios from '@/lib/axios'
 
-export const useHomePageData = ({locale}) => {
+export const useHomePageData = ({locale, page, perPage}) => {
 
   const {data: featuredArticles} = useSWR(`/home/${locale}`, async ()=>{
     const response = await fetch(`/${locale}/api/featuredArticles`)
