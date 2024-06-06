@@ -1,6 +1,6 @@
-import ro from "./locales/ro/translations.json"
-import ru from "./locales/ru/translations.json"
-import en from "./locales/en/translations.json"
+import ro from "@/i18n/locales/ro/translations.json"
+import ru from "@/i18n/locales/ru/translations.json"
+import en from "@/i18n/locales/en/translations.json"
 export const fallbackLng = 'ro'
 export const languages = [fallbackLng, 'ru', 'en']
 
@@ -17,10 +17,10 @@ export function getOptions (lng = fallbackLng, ns = defaultNS) {
       en: {translation: en}
     },
     lng,
-    // detection: {
-    //   order:['cookie', 'localStorage'],
-    //   caches: ['cookie', 'localStorage']
-    // },
+    detection: {
+      order:['cookie', 'localStorage'],
+      caches: ['cookie', 'localStorage']
+    },
     fallbackNS: defaultNS,
     defaultNS,
     ns

@@ -13,6 +13,7 @@ export const GET = async (request, {params: {locale, category}})=>{
           ]
         }
       },
+      size: 20,
       sort: [
         { "translations.published_at": {order: "desc", "format": "strict_date_optional_time_nanos"} }
       ]
