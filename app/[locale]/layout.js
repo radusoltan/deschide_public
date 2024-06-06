@@ -4,6 +4,7 @@ import { dir } from 'i18next'
 import Navigation from "@/components/Navigation";
 import {Footer} from "@/components/Footer";
 import {AnimatePresence} from "framer-motion";
+import {Header} from "@/components/old/Header";
 
 const lora = Lora({
   subsets: ["latin"],
@@ -33,20 +34,10 @@ export default async function RootLayout({ children, params: { locale } }) {
     <html lang={locale} dir={dir(locale)}>
     <body className={`${titleFont.variable} ${lora.variable} ${titleCategory.variable}`}>
 
-    <header className="">
+    <Header locale={locale} />
 
-      <Navigation locale={locale}/>
-    </header>
+    <main>{children}</main>
 
-      <main>{children}</main>
-
-
-    <Footer/>
-    <a href="#"
-       className="back-top fixed p-4 rounded bg-gray-100 border border-gray-100 text-gray-500 dark:bg-gray-900 dark:border-gray-800 right-4 bottom-4 hidden"
-    >
-      TOP
-    </a>
     </body>
     </html>
   );
