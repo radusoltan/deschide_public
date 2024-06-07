@@ -1,6 +1,5 @@
 "use client"
 import {useHomePageData} from "@/hooks/articles"
-import {log} from "next/dist/server/typescript/utils";
 import useWindowSize from "@/hooks/useWindowSize";
 import Image from "next/image";
 function classNames(...classes) {
@@ -12,7 +11,7 @@ export const SpecialArticle = ({locale})=> {
   const { width } = useWindowSize();
 
   const some = specialArticle?.some(({_source})=>_source)
-  console.log(specialArticle)
+
   return specialArticle?.length > 0 && <>
 
     {
@@ -26,7 +25,7 @@ export const SpecialArticle = ({locale})=> {
 
         const {is_breaking, is_flash, is_alert, title, lead, body} = article._source.translations.find(t=>t.locale === locale)
 
-        return <div className="container max-w-7xl mx-auto mb-5">
+        return <div className="container max-w-7xl mx-auto mb-5" key={article?._source?.article_id}>
           <div className="relative rounded-lg block md:flex items-center bg-gray-100 shadow-xl h-96"
                style={{minHeight: "19em"}}>
             <div
