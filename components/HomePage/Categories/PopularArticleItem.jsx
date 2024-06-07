@@ -1,11 +1,10 @@
 import moment from "moment";
-import {ArticleItemImage} from "@/components/ArticleItem/ArticleItemImage";
 import useWindowSize from "@/hooks/useWindowSize";
 import Image from "next/image";
 
 export const PopularArticleItem = ({article, locale}) => {
 
-  const {images, translations, visits} = article?._source
+  const {images, translations, visits} = article
   moment.locale(locale)
 
   const {width} = useWindowSize();

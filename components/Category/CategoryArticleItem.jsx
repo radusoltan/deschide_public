@@ -1,14 +1,16 @@
+"use client"
 import {Suspense} from "react";
-import {ArticleItemLoading} from "@/components/LoadingSkeletons/ArticleItemLoading";
+
 import useWindowSize from "@/hooks/useWindowSize";
 import Image from "next/image";
 import Link from "next/link";
+import moment from "moment/moment";
 
 export const CategoryArticleItem = ({locale, article})=>{
 
   const { width } = useWindowSize();
 
-  const {article_id, translations, images, category} = article._source
+  const {article_id, translations, images, category} = article
 
 
   const articleLink = `/${locale}/articles/${category.translations.find(t => t.locale === locale).slug}/${article_id}/${translations?.find(t=>t.locale===locale)?.slug}`
@@ -35,7 +37,7 @@ export const CategoryArticleItem = ({locale, article})=>{
       alt={translations?.find(t => t.locale === locale)?.title}
   />
 
-  return <Suspense fallback={<ArticleItemLoading />}><div className="flex-shrink max-w-full w-full sm:w-1/3 px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
+  return <Suspense fallback={<>Loading ...</>}><div className="flex-shrink max-w-full w-full sm:w-1/3 px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
     <div className="flex flex-row sm:block hover-img">
       <Link
           href={articleLink}>
@@ -47,20 +49,11 @@ export const CategoryArticleItem = ({locale, article})=>{
             translations.find(t => t.locale === locale)?.title
           }</Link>
         </h3>
-        <p className="hidden md:block text-gray-600 leading-tight mb-1 font-text font-light"
-           dangerouslySetInnerHTML={{__html:
-             translations.find(t=>t.locale===locale)?.lead ?
-               translations.find(t=>t.locale===locale)?.lead.substring(0,150) + '...' :
-               translations.find(t=>t.locale===locale)?.body.substring(0,150) + '...'
-          }}
-        />
-        {/*<Link className="text-gray-500" href={*/}
-        {/*  `/${locale}/articles/${category.translations.find(t => t.locale === locale).slug}`*/}
-        {/*}><span*/}
-        {/*    className="inline-block h-3 border-l-2 border-red-600 mr-2 font-category"></span>{*/}
-        {/*  category.translations.find(t => t.locale === locale).title*/}
-        {/*}</Link>*/}
+        <div className="text-gray-500 text-sm mt-7 font-text">{
+          moment(translations.find(t => t.locale === locale)?.published_at).format("MM Do YYYY, h:mm")
+        }</div>
       </div>
     </div>
-  </div></Suspense>
+  </div>
+  </Suspense>
 }

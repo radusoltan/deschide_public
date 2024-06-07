@@ -14,7 +14,7 @@ export const GET = async (req,{params: {locale, category}}) => {
           ]
         }
       },
-      size: 3,
+      size: 5,
       sort: [
         { "visits": { order: "desc" } }
       ]
