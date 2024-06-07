@@ -1,11 +1,10 @@
 "use client"
 import { useHomePageData} from "@/hooks/articles";
-import Link from "next/link";
 import Image from "next/image";
-import useWindowSize from "@/hooks/useWindowSize";
 import {ArticleItem} from "@/components/HomePage/BlockNews/ArticleItem";
-import {useState} from "react";
+
 import {useTranslation} from '@/i18n/client'
+import add_image from "@/public/img/ads/250.jpg"
 
 export const BlockNews = ({locale}) => {
 
@@ -37,7 +36,7 @@ export const BlockNews = ({locale}) => {
               <div className="w-full text-center">
                 <a className="uppercase" href="#">Advertisement</a>
                 <a href="#">
-                  <img className="mx-auto" src="/img/ads/250.jpg" alt="advertisement area"/>
+                  <Image className="mx-auto" src={add_image} alt="advertisement area"/>
                 </a>
               </div>
             </div>

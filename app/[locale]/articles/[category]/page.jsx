@@ -1,10 +1,11 @@
 import {client} from "@/lib/elascticsearch";
 import axios from "axios";
-import {CategoryArticleItem} from "@/components/Category/CategoryArticleItem";
-import {CategoryFirstArticle} from "@/components/Category/First";
 import Link from "next/link";
 import moment from "moment/moment";
 import {Articles} from "@/components/Category/Articles";
+import add_img from "@/public/img/ads/250.jpg"
+import Image from "next/image";
+
 
 
 export const getCategory = async ({locale, category, page, limit}) => {
@@ -121,7 +122,7 @@ return <div className="bg-gray-50 py-6">
           <div className="w-full text-center">
             <a className="uppercase" href="#">Advertisement</a>
             <a href="#">
-              <img className="mx-auto" src="/img/ads/250.jpg" alt="advertisement area"/>
+              <Image className="mx-auto" src={add_img} alt="advertisement area"/>
             </a>
           </div>
         </div>

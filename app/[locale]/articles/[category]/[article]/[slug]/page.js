@@ -10,6 +10,7 @@ import {faInstagram, faSquareFacebook, faSquareTwitter, faTelegram} from "@forta
 import {useCategoryArticles} from "@/hooks/categories";
 import {useTranslation} from "@/i18n/client";
 import Link from "next/link";
+import ads_728 from '@/public/img/ads/ads_728.jpg'
 
 
 export default function Page({ params: {article, locale, category} }) {
@@ -34,7 +35,7 @@ export default function Page({ params: {article, locale, category} }) {
         <div className="mx-auto table text-center text-sm">
           <a className="uppercase" href="#">Advertisement</a>
           <a href="#">
-            <img src="/img/ads/ads_728.jpg" alt="advertisement area"/>
+            <Image src={ads_728} alt="advertisement area"/>
           </a>
         </div>
       </div>

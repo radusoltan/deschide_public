@@ -1,10 +1,10 @@
 "use client"
 import {useParams} from "next/navigation";
 import {useCategoryArticles} from "@/hooks/categories";
-import {CategoryFirstArticle} from "@/components/Category/First";
-import {CategoryArticleItem} from "@/components/Category/CategoryArticleItem";
 import {useTranslation} from "@/i18n/client";
 import Link from "next/link";
+import Image from "next/image";
+import add_image from "@/public/img/ads/250.jpg"
 
 export const CategoryPage = ({locale})=>{
 
@@ -64,7 +64,7 @@ export const CategoryPage = ({locale})=>{
               <div className="w-full text-center">
                 <a className="uppercase" href="#">Advertisement</a>
                 <a href="#">
-                  <img className="mx-auto" src="/img/ads/250.jpg" alt="advertisement area" />
+                  <Image className="mx-auto" src={add_image} alt="advertisement area" />
                 </a>
               </div>
             </div>
