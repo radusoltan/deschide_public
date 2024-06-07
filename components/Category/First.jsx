@@ -7,7 +7,7 @@ export const CategoryFirstArticle = ({locale, article})=> {
 
   const {width} = useWindowSize();
 
-  const {article_id, images, translations, category} = article?._source
+  const {article_id, images, translations, category} = article
   //
   const articleImage = images?.length > 0 && <Image
       className="max-w-full w-full mx-auto h-auto"
@@ -44,11 +44,11 @@ export const CategoryFirstArticle = ({locale, article})=> {
             translations.find(t => t.locale === locale)?.title
           }</h2>
         </Link>
-        <p className="text-gray-100 hidden sm:inline-block font-text" dangerouslySetInnerHTML={{
-          __html: translations.find(t => t.locale === locale)?.lead ?
-              translations.find(t => t.locale === locale)?.lead.substring(0, 150) :
-              translations.find(t => t.locale === locale)?.body.substring(0, 150)
-        }} />
+        {/*<p className="text-gray-100 hidden sm:inline-block font-text" dangerouslySetInnerHTML={{*/}
+        {/*  __html: translations.find(t => t.locale === locale)?.lead ?*/}
+        {/*      translations.find(t => t.locale === locale)?.lead.substring(0, 150) :*/}
+        {/*      translations.find(t => t.locale === locale)?.body.substring(0, 150)*/}
+        {/*}} />*/}
         {/* author and date */}
         <div className="pt-2">
           <div className="text-gray-100">

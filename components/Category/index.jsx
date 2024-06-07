@@ -16,10 +16,6 @@ export const CategoryPage = ({locale})=>{
 
   const firstArticle = articles && articles[0]
 
-  // popularArticles?.map(article=>{
-  //   console.log(article._source.translations.find(t=>t.locale===locale).title)
-  // })
-
 
   return articles !== undefined && <>
     {/* block news */}
@@ -34,9 +30,9 @@ export const CategoryPage = ({locale})=>{
               </h2>
             </div>
             <div className="flex flex-row flex-wrap -mx-3">
-              <CategoryFirstArticle article={firstArticle} locale={locale} />
+              {/*<CategoryFirstArticle article={firstArticle} locale={locale} />*/}
 
-              {articles?.map((article, index)=>index > 0 && <CategoryArticleItem article={article} locale={locale} key={index} />)}
+              {/*{articles?.map((article, index)=>index > 0 && <CategoryArticleItem article={article} locale={locale} key={index} />)}*/}
             </div>
           </div>
           {/* right */}

@@ -20,12 +20,12 @@ export default function Page({ params: {article, locale, category} }) {
 
   const { width } = useWindowSize();
 
-  const mainImage = articleData?._source.images?.find(i=>i.is_main)
+  const mainImage = articleData?._source?.images?.find(i=>i.is_main)
   const thumbnail = width < 768 ?
       mainImage?.thumbnails?.find(t=>t.rendition_id===2) :
       mainImage?.thumbnails?.find(t=>t.rendition_id===1)
 
-  const visits = articleData?._source.visits
+  const visits = articleData?._source?.visits
 
   return <>
     {/* advertisement */}
@@ -50,7 +50,7 @@ export default function Page({ params: {article, locale, category} }) {
             <div className="w-full py-3 mb-3">
               <h2 className="text-gray-800 text-3xl font-bold font-title">
                 <span className="inline-block h-5 border-l-3 border-red-600 mr-2"></span>
-                {articleData?._source.translations.find(t=>t.locale===locale).title}
+                {articleData?._source?.translations.find(t=>t.locale===locale).title}
               </h2>
             </div>
             <div className="flex flex-row flex-wrap -mx-3">
@@ -58,7 +58,7 @@ export default function Page({ params: {article, locale, category} }) {
                 {/* Article Content */}
                 <div className="leading-relaxed pb-4 font-text">
                   <p className="mb-5"
-                     dangerouslySetInnerHTML={{__html: articleData?._source.translations.find(t => t.locale === locale).lead}}/>
+                     dangerouslySetInnerHTML={{__html: articleData?._source?.translations.find(t => t.locale === locale).lead}}/>
                   <figure className="text-center mb-6">
                     {
                         thumbnail && <>
@@ -75,7 +75,7 @@ export default function Page({ params: {article, locale, category} }) {
 
                   </figure>
                   <div className="mb-5 article-body"
-                       dangerouslySetInnerHTML={{__html: articleData?._source.translations.find(t => t.locale === locale).body}}/>
+                       dangerouslySetInnerHTML={{__html: articleData?._source?.translations.find(t => t.locale === locale).body}}/>
                 </div>
                 <div
                     className="relative flex flex-row items-center justify-between overflow-hidden bg-gray-100 dark:bg-gray-900 dark:bg-opacity-20 mt-12 mb-2 px-6 py-2">

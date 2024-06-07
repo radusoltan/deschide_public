@@ -10,7 +10,6 @@ export async function GET(request, {params: {locale, category}}) {
           must: [
             { match: { "category.translations.locale": locale } },
             { match: { "category.translations.slug": category } },
-            { match: { "translations.locale": locale } }
           ]
         }
       },
@@ -19,6 +18,8 @@ export async function GET(request, {params: {locale, category}}) {
       ]
     }
   })
+
+  console.log(category, articles.hits.hits)
 
   return NextResponse.json(articles.hits.hits)
 }
