@@ -22,7 +22,7 @@ export async function getPoliticalArticles({locale}){
         }
       },
       from: 0,
-      size: 10,
+      size: 16,
       sort: [
         { "translations.published_at": {"order": "desc", "format": "strict_date_optional_time_nanos"} }
       ]
@@ -237,7 +237,11 @@ export default async function Home({params: {locale}}) {
                             "Political"
                   }</h2>
               </div>
-              <CategoryArticles locale={locale} articles={politicalArticles} popular={politicalPopular}/>
+              <CategoryArticles locale={locale} articles={politicalArticles} popular={politicalPopular} category={
+                locale === "ro" ? "politic" :
+                locale === "ru" ? "politika" :
+                "political"
+              }/>
             </div>
             <div className="flex-shrink max-w-full w-full overflow-hidden py-3 ml-6">
               <div className="w-full pb-10">
@@ -249,7 +253,11 @@ export default async function Home({params: {locale}}) {
                             "Social"
                   }</h2>
               </div>
-              <CategoryArticles locale={locale} articles={socialArticles} popular={socialPopular}/>
+              <CategoryArticles category={
+                locale === "ro" ? "social" :
+                    locale === "ru" ? "obshhestvo" :
+                        "social"
+              } locale={locale} articles={socialArticles} popular={socialPopular}/>
             </div>
             <div className="flex-shrink max-w-full w-full overflow-hidden py-3 ml-6">
               <div className="w-full pb-10">
@@ -261,7 +269,11 @@ export default async function Home({params: {locale}}) {
                             "Financial"
                   }</h2>
               </div>
-              <CategoryArticles locale={locale} articles={financialArticles} popular={finiancialPopular}/>
+              <CategoryArticles category={
+                locale === "ro" ? "economic" :
+                    locale === "ru" ? "ekonomika" :
+                        "business"
+              } locale={locale} articles={financialArticles} popular={finiancialPopular}/>
             </div>
             <div className="flex-shrink max-w-full w-full overflow-hidden py-3 ml-6">
               <div className="w-full pb-10">
@@ -273,7 +285,11 @@ export default async function Home({params: {locale}}) {
                             "International"
                   }</h2>
               </div>
-              <CategoryArticles locale={locale} articles={internationalArticles} popular={intenrationalPopular}/>
+              <CategoryArticles category={
+                locale === "ro" ? "externe" :
+                    locale === "ru" ? "v-mire" :
+                        "international"
+              }  locale={locale} articles={internationalArticles} popular={intenrationalPopular}/>
             </div>
           </div>
 

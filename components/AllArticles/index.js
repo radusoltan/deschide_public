@@ -7,8 +7,9 @@ import {useParams, useRouter} from 'next/navigation'
 import useWindowSize from "@/hooks/useWindowSize";
 import Image from "next/image";
 import Link from "next/link";
+import moment from "moment";
 
-export const AllArticles = ({articles, total, totalPages, page})=> {
+export const AllArticles = ({articles, totalPages, page})=> {
 
   const router = useRouter();
   const {locale} = useParams()
@@ -22,8 +23,8 @@ export const AllArticles = ({articles, total, totalPages, page})=> {
 
   return <div className="flex-shrink max-w-full w-full overflow-hidden">
     <div className="w-full py-3">
-      <h2 className="text-gray-800 text-2xl font-bold">
-        <span className="inline-block h-5 border-l-4 border-red-600 mr-2"></span>Africa
+      <h2 className="text-gray-800 text-2xl font-bold font-title">
+        <span className="inline-block h-5 border-l-4 border-red-600 mr-2"></span>News
       </h2>
     </div>
     <div className="flex flex-row flex-wrap -mx-3">
@@ -53,20 +54,27 @@ export const AllArticles = ({articles, total, totalPages, page})=> {
           </Link>
           <div className="py-0 sm:py-3 pl-3 sm:pl-0">
             <h3 className="text-lg font-bold leading-tight mb-2 font-title">
-              <Link href={`/${locale}/articles/${article.category.translations.find(t => t.locale === locale).slug}/${article.article_id}/${article.translations?.find(t=>t.locale===locale)?.slug}`}>
-                {article.translations.find(t=>t.locale===locale)?.title}
+              <Link
+                  href={`/${locale}/articles/${article.category.translations.find(t => t.locale === locale).slug}/${article.article_id}/${article.translations?.find(t => t.locale === locale)?.slug}`}>
+                {article.translations.find(t => t.locale === locale)?.title}
               </Link>
             </h3>
-            <p
-                className="hidden md:block text-gray-600 leading-tight mb-1 font-text"
-                dangerouslySetInnerHTML={{__html:
-                      article.translations.find(t=>t.locale===locale)?.lead ?
-                          article.translations.find(t=>t.locale===locale)?.lead.substring(0,150) + '...' :
-                          article.translations.find(t=>t.locale===locale)?.body.substring(0,150) + '...'
-                }}
-            />
-            <Link className="text-gray-500 font-category" href={`/${locale}/articles/${article.category.translations.find(t => t.locale === locale).slug}`}><span
-                className="inline-block h-3 border-l-2 border-red-600 mr-2"></span>{article.category.translations.find(t=>t.locale===locale).title}</Link>
+            <div className="text-gray-500 text-sm mt-7 mb-5 font-text">{
+              moment(article.translations.find(t => t.locale === locale).published_at)
+                  .format("MM Do YYYY, h:mm")
+            }</div>
+            {/*<p*/}
+            {/*    className="hidden md:block text-gray-600 leading-tight mb-1 font-text"*/}
+            {/*    dangerouslySetInnerHTML={{__html:*/}
+            {/*          article.translations.find(t=>t.locale===locale)?.lead ?*/}
+            {/*              article.translations.find(t=>t.locale===locale)?.lead.substring(0,150) + '...' :*/}
+            {/*              article.translations.find(t=>t.locale===locale)?.body.substring(0,150) + '...'*/}
+            {/*    }}*/}
+            {/*/>*/}
+            <Link className="text-gray-500 font-category"
+                  href={`/${locale}/articles/${article.category.translations.find(t => t.locale === locale).slug}`}><span
+                className="inline-block h-3 border-l-2 border-red-600 mr-2"></span>{article.category.translations.find(t => t.locale === locale).title}
+            </Link>
           </div>
         </div>
       </div>)}
