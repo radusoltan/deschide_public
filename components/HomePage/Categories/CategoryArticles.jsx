@@ -1,8 +1,8 @@
 "use client"
-import {useCategoryArticles} from "@/hooks/categories";
 import moment from "moment";
 import {PopularArticleItem} from "@/components/HomePage/Categories/PopularArticleItem";
 import {Suspense} from "react";
+import Link from "next/link";
 
 export const CategoryArticles = ({locale, articles, popular}) => {
 
@@ -15,22 +15,26 @@ export const CategoryArticles = ({locale, articles, popular}) => {
         {
           articles?.length > 0 && articles?.map((article, index)=> {
 
-            const {images, translations} = article
-            moment.locale(locale)
+            const { translations, category, article_id} = article
 
-            const {title, published_at } = translations?.find(t => t.locale === locale);
+            const {title, published_at, slug } = translations?.find(t => t.locale === locale);
 
             const date = moment(published_at).format("MM Do YYYY, h:mm")
 
+              console.log()
+
             return <div key={index} className="pb-5">
-              <h1 className="font-title font-bold">
-                {
-                  title
-                }
-              </h1>
+              <Link href={`/${locale}/articles/${category.translations.find(t=>t.locale===locale).slug}/${article_id}/${slug}`}>
+                <h1 className="font-title font-bold">
+                  {
+                    title
+                  }
+                </h1>
+              </Link>
+
               <div className="text-gray-500 text-sm mt-7 font-text">{date}</div>
             </div>
-          })
+            })
         }
       </Suspense>
     </div>

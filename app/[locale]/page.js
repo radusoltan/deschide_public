@@ -2,19 +2,11 @@
 import {SpecialArticle} from "@/components/HomePage/SpecialArticle";
 import {FeaturedArticlesListPage} from "@/components/HomePage/FeaturedArticlesList";
 import {SlideNews} from "@/components/HomePage/SlideNews";
-import {Categories} from "@/components/HomePage/Categories";
 import {LatestNews} from "@/components/HomePage/LatestNews";
-import {useCategories} from "@/hooks/categories";
-import axios from "@/lib/axios";
 import {client} from "@/lib/elascticsearch";
 import {CategoryArticles} from "@/components/HomePage/Categories/CategoryArticles";
 
-export const getCategories = async ({locale})=>{
-  const result = await axios.get(`api/public/homepage/categories?locale=${locale}`)
 
-  return result.data
-
-}
 
 export async function getPoliticalArticles({locale}){
 
@@ -202,7 +194,7 @@ export default async function Home({params: {locale}}) {
 
 
   return <>
-    {/*<SpecialArticle locale={locale} />*/}
+    <SpecialArticle locale={locale} />
     {/*/!* hero big grid *!/*/}
 
     <FeaturedArticlesListPage locale={locale} />
@@ -290,14 +282,7 @@ export default async function Home({params: {locale}}) {
 
       </div>
     </div>
-
-    <div className="w-full border-b-2 border-gray-700" />
-
-
-    {/*/!*<NewFeatured />*!/*/}
-    {/*<BlockNews locale={locale} />*/}
     <SlideNews locale={locale}/>
-    {/*<PoliticalNews />*/}
 
   </>
 }

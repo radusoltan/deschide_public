@@ -1,7 +1,6 @@
 import {client} from "@/lib/elascticsearch";
 import axios from "axios";
 import Link from "next/link";
-import moment from "moment/moment";
 import {Articles} from "@/components/Category/Articles";
 import add_img from "@/public/img/ads/250.jpg"
 import Image from "next/image";
@@ -70,7 +69,7 @@ export default async function Page({ params: {locale, category}, searchParams })
     category: categoryData,
     total
   } = await getCategory({locale, category, page, limit})
-  moment.locale(locale)
+
   const totalPages = Math.ceil(total / limit)
 
 
