@@ -1,9 +1,7 @@
 import {Lora, Roboto_Slab, PT_Serif} from "next/font/google";
 import "../globals.css";
 import { dir } from 'i18next'
-import Navigation from "@/components/Navigation";
 import {Footer} from "@/components/Footer";
-import {AnimatePresence} from "framer-motion";
 import {Header} from "@/components/old/Header";
 
 const lora = Lora({
@@ -26,6 +24,27 @@ const titleCategory = PT_Serif({
 export const metadata = {
   title: "Deschide.MD",
   description: "Portal de stiri din Republica Moldova",
+  openGraph: {
+    title: 'Deschide.MD',
+    description: 'Portal de stiri din Republica Moldova',
+    url: 'https://deschide.md',
+    siteName: 'Deschide.MD',
+    images: [
+      {
+        url: 'https://nextjs.org/og.png', // Must be an absolute URL
+        width: 800,
+        height: 600,
+      },
+      {
+        url: 'https://nextjs.org/og-alt.png', // Must be an absolute URL
+        width: 1800,
+        height: 1600,
+        alt: 'My custom alt',
+      },
+    ],
+    locale: 'ro_RO',
+    type: 'website',
+  },
 };
 
 export default async function RootLayout({ children, params: { locale } }) {

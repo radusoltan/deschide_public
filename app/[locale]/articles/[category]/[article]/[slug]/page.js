@@ -13,6 +13,7 @@ import Link from "next/link";
 import ads_728 from '@/public/img/ads/ads_728.jpg'
 
 
+
 export default function Page({ params: {article, locale, category} }) {
 
   const {articleData} = useArticle({article, locale});
@@ -21,7 +22,7 @@ export default function Page({ params: {article, locale, category} }) {
 
   const { width } = useWindowSize();
 
-  const mainImage = articleData?._source?.images?.find(i=>i.is_main)
+  const mainImage = articleData?.images?.find(i=>i.is_main)
   const thumbnail = width < 768 ?
       mainImage?.thumbnails?.find(t=>t.rendition_id===2) :
       mainImage?.thumbnails?.find(t=>t.rendition_id===1)
@@ -29,6 +30,7 @@ export default function Page({ params: {article, locale, category} }) {
   const visits = articleData?._source?.visits
 
   return <>
+
     {/* advertisement */}
     <div className="bg-gray-50 py-4">
       <div className="xl:container mx-auto px-3 sm:px-4 xl:px-2">
@@ -48,10 +50,13 @@ export default function Page({ params: {article, locale, category} }) {
 
         {/* Left */}
           <div className="flex-shrink max-w-full w-full lg:w-2/3 overflow-hidden">
+            <article>
+
+
             <div className="w-full py-3 mb-3">
               <h2 className="text-gray-800 text-3xl font-bold font-title">
                 <span className="inline-block h-5 border-l-3 border-red-600 mr-2"></span>
-                {articleData?._source?.translations.find(t=>t.locale===locale).title}
+                {articleData?.translations.find(t=>t.locale===locale).title}
               </h2>
             </div>
             <div className="flex flex-row flex-wrap -mx-3">
@@ -59,7 +64,7 @@ export default function Page({ params: {article, locale, category} }) {
                 {/* Article Content */}
                 <div className="leading-relaxed pb-4 font-text">
                   <p className="mb-5"
-                     dangerouslySetInnerHTML={{__html: articleData?._source?.translations.find(t => t.locale === locale).lead}}/>
+                     dangerouslySetInnerHTML={{__html: articleData?.translations.find(t => t.locale === locale).lead}}/>
                   <figure className="text-center mb-6">
                     {
                         thumbnail && <>
@@ -67,7 +72,7 @@ export default function Page({ params: {article, locale, category} }) {
                               src={process.env.NEXT_PUBLIC_BACKEND_URL + '/' + thumbnail?.path}
                               width={thumbnail?.width}
                               height={thumbnail?.height}
-                              alt={articleData?._source.translations.find(t => t.locale === locale).title}
+                              alt={articleData?.translations.find(t => t.locale === locale).title}
                           />
                           <figcaption>{mainImage?.description} | FOTO: <i>{mainImage.author}</i></figcaption>
                         </>
@@ -76,7 +81,7 @@ export default function Page({ params: {article, locale, category} }) {
 
                   </figure>
                   <div className="mb-5 article-body"
-                       dangerouslySetInnerHTML={{__html: articleData?._source?.translations.find(t => t.locale === locale).body}}/>
+                       dangerouslySetInnerHTML={{__html: articleData?.translations.find(t => t.locale === locale).body}}/>
                 </div>
                 <div
                     className="relative flex flex-row items-center justify-between overflow-hidden bg-gray-100 dark:bg-gray-900 dark:bg-opacity-20 mt-12 mb-2 px-6 py-2">
@@ -91,7 +96,7 @@ export default function Page({ params: {article, locale, category} }) {
 
 
                       <FontAwesomeIcon icon={faCalendarDays} />
-                      <></> Oct 22, 2020
+                      <time>Oct 22, 2020</time>
                     </time>
                     {/*view*/}
                     <span className="mr-2 md:mr-4 font-text">
@@ -139,6 +144,7 @@ export default function Page({ params: {article, locale, category} }) {
                 </div>
               </div>
             </div>
+            </article>
           </div>
           {/* Right */}
           <div className="flex-shrink max-w-full w-full lg:w-1/3 lg:pl-8 lg:pt-14 lg:pb-8 order-first lg:order-last">

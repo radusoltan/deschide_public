@@ -4,7 +4,8 @@ import {PopularArticleItem} from "@/components/HomePage/Categories/PopularArticl
 import {Suspense} from "react";
 import Link from "next/link";
 
-export const CategoryArticles = ({locale, articles, popular}) => {
+export const CategoryArticles = ({locale, articles, popular, category}) => {
+
 
 
 
@@ -52,7 +53,7 @@ export const CategoryArticles = ({locale, articles, popular}) => {
       }
     </div>
     <span className="w-full border-b-2 mt-10" />
-    <a href="#" className="w-full text-center font-light text-gray-500 p-5 hover:bg-gray-300 hover:text-gray-500 mx-auto">More News</a>
+    <Link href={`/${locale}/articles/${category}`} className="w-full text-center font-light text-gray-500 p-5 hover:bg-gray-300 hover:text-gray-500 mx-auto">More News</Link>
     {/* right */}
   </div>
 }

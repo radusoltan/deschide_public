@@ -2,7 +2,7 @@ import { Fragment } from 'react'
 import {
   Disclosure,
 } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 
 import logo from "@/public/logo.svg"
 
@@ -20,12 +20,17 @@ export const Navigation = ({locale})=>{
 
   const {items} = useCategories({locale})
 
-  const categories = items?.data.map((category)=>({
-    id: Number(category.id),
-    name: category.title,
-    href: `/${locale}/articles/${category.slug}`,
-    current: params.category && params.category === category.slug,
-  }))
+  const arr =items?.data.filter(category=>category.in_menu)
+
+  const categories = arr?.map((category)=> {
+
+    return category.in_menu && ({
+      id: Number(category.id),
+      name: category.title,
+      href: `/${locale}/articles/${category.slug}`,
+      current: params.category && params.category === category.slug,
+    })
+  })
 
   return <Disclosure as="nav" className="bg-white">
     {({ open }) => (
