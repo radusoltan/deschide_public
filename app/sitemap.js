@@ -37,15 +37,23 @@ export default async function sitemap() {
 
   return [
     {
-      url: `${process.env.NEXT_PUBLIC_APP_URL}/`,
+      url: `${process.env.NEXT_PUBLIC_APP_URL}/ro`,
       lastModified: new Date(),
-      alternates: {
-        languages: {
-          ro: `${process.env.NEXT_PUBLIC_APP_URL}/ro`,
-          ru: `${process.env.NEXT_PUBLIC_APP_URL}/ru`,
-          en: `${process.env.NEXT_PUBLIC_APP_URL}/en`,
-        },
-      },
+      // alternates: {
+      //   languages: {
+      //     ro: `${process.env.NEXT_PUBLIC_APP_URL}/ro`,
+      //     ru: `${process.env.NEXT_PUBLIC_APP_URL}/ru`,
+      //     en: `${process.env.NEXT_PUBLIC_APP_URL}/en`,
+      //   },
+      // },
+    },
+    {
+      url: `${process.env.NEXT_PUBLIC_APP_URL}/ru`,
+      lastModified: new Date(),
+    },
+    {
+      url: `${process.env.NEXT_PUBLIC_APP_URL}/en`,
+      lastModified: new Date(),
     },
       ...roCategories,
       ...ruCategories,
