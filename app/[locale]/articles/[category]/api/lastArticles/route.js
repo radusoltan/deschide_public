@@ -9,7 +9,8 @@ export const GET = async (request, {params: {locale, category}})=>{
         bool: {
           must: [
             { match: { "category.translations.locale": locale } },
-            { match: { "category.translations.slug": category} }
+            { match: { "category.translations.slug": category} },
+            { match: { "translations.status": 'P' } }
           ]
         }
       },

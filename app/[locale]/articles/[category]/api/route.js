@@ -8,8 +8,9 @@ export async function GET(request, {params: {locale, category}}) {
       query: {
         bool: {
           must: [
-            { match: { "category.translations.locale": locale } },
+            { match: { "translations.locale": locale } },
             { match: { "category.translations.slug": category } },
+            { match: { "translations.status": 'P' } }
           ]
         }
       },

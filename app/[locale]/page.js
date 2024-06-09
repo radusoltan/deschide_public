@@ -17,7 +17,8 @@ export async function getPoliticalArticles({locale}){
         bool: {
           must: [
             { match: { "translations.locale": locale} },
-            { match: { "category.translations.slug": 'politic' } }
+            { match: { "category.translations.slug": 'politic' } },
+            { match: { "translations.status": 'P' } }
           ]
         }
       },
@@ -35,7 +36,8 @@ export async function getPoliticalArticles({locale}){
         bool: {
           must: [
             { match: { "translations.locale": locale} },
-            { match: { "category.translations.slug": 'politic' } }
+            { match: { "category.translations.slug": 'politic' } },
+            { match: { "translations.status": 'P' } }
           ]
         }
       },
@@ -60,6 +62,7 @@ export async function getSocialArticles({locale}){
         bool: {
           must: [
             { match: { "translations.locale": locale} },
+            { match: { "translations.status": 'P' } },
             { match: { "category.translations.slug": 'social' } }
           ]
         }
@@ -78,7 +81,8 @@ export async function getSocialArticles({locale}){
         bool: {
           must: [
             { match: { "translations.locale": locale} },
-            { match: { "category.translations.slug": 'social' } }
+            { match: { "category.translations.slug": 'social' } },
+            { match: { "translations.status": 'P' } }
           ]
         }
       },
@@ -103,7 +107,8 @@ export async function getFinancialArticles({locale}){
         bool: {
           must: [
             { match: { "translations.locale": locale} },
-            { match: { "category.translations.slug": 'economic' } }
+            { match: { "category.translations.slug": 'economic' } },
+            { match: { "translations.status": 'P' } }
           ]
         }
       },
@@ -121,7 +126,8 @@ export async function getFinancialArticles({locale}){
         bool: {
           must: [
             { match: { "translations.locale": locale} },
-            { match: { "category.translations.slug": 'economic' } }
+            { match: { "category.translations.slug": 'economic' } },
+            { match: { "translations.status": 'P' } }
           ]
         }
       },
@@ -146,7 +152,8 @@ export async function getInternationalArticles({locale}){
         bool: {
           must: [
             { match: { "translations.locale": locale} },
-            { match: { "category.translations.slug": 'externe' } }
+            { match: { "category.translations.slug": 'externe' } },
+            { match: { "translations.status": 'P' } }
           ]
         }
       },
@@ -165,7 +172,8 @@ export async function getInternationalArticles({locale}){
         bool: {
           must: [
             { match: { "translations.locale": locale} },
-            { match: { "category.translations.slug": 'externe' } }
+            { match: { "category.translations.slug": 'externe' } },
+            { match: { "translations.status": 'P' } }
           ]
         }
       },

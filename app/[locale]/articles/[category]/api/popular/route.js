@@ -10,7 +10,8 @@ export const GET = async (req,{params: {locale, category}}) => {
           must: [
             { match: { "category.translations.locale": locale } },
             { match: { "category.translations.slug": category } },
-            { match: { "translations.locale": locale} }
+            { match: { "translations.locale": locale} },
+            { match: { "translations.status": 'P' } }
           ]
         }
       },

@@ -51,8 +51,6 @@ export default function Page({ params: {article, locale, category} }) {
         {/* Left */}
           <div className="flex-shrink max-w-full w-full lg:w-2/3 overflow-hidden">
             <article>
-
-
             <div className="w-full py-3 mb-3">
               <h2 className="text-gray-800 text-3xl font-bold font-title">
                 <span className="inline-block h-5 border-l-3 border-red-600 mr-2"></span>
