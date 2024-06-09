@@ -10,7 +10,8 @@ export const GET = async (request, {params: {locale}})=>{
         query: {
           bool: {
             must: [
-              { match: { "translations.locale": locale} }
+              { match: { "translations.locale": locale} },
+              { match: { "translations.status": 'P' } }
             ],
             should: [
               { match: { "translations.is_breaking": true } },
