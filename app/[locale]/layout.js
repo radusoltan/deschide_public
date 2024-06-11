@@ -2,7 +2,7 @@ import {Lora, Roboto_Slab, PT_Serif} from "next/font/google";
 import "../globals.css";
 import { dir } from 'i18next'
 import {Footer} from "@/components/Footer";
-import {Header} from "@/components/old/Header";
+import {Header} from "@/components/Header";
 
 const lora = Lora({
   subsets: ["latin"],
@@ -52,7 +52,6 @@ export default async function RootLayout({ children, params: { locale } }) {
   return (
     <html lang={locale} dir={dir(locale)}>
     <body className={`${titleFont.variable} ${lora.variable} ${titleCategory.variable}`}>
-
     <Header locale={locale} />
 
     <main>{children}</main>

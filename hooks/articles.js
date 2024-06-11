@@ -2,6 +2,32 @@
 import useSWR from 'swr'
 import axios from '@/lib/axios'
 
+export const useArticles = ({locale})=>{
+
+  const {data: specialArticles} = useSWR(`/home/${locale}/specialArticle`, async ()=>{
+
+    const response = await fetch(`/${locale}/api/specialArticle`)
+    return await response.json()
+
+  })
+
+  const {data: featuredArticles} = useSWR(`/home/${locale}`, async ()=>{
+    const response = await fetch(`/${locale}/api/featuredArticles`)
+    return await response.json()
+  })
+
+  const {data: lastArticles} = useSWR(`/home/${locale}/lastArticles`, async ()=>{
+    const response = await fetch(`/${locale}/api/lastArticles`)
+    return await response.json()
+  })
+
+  return {
+    specialArticles,
+    featuredArticles,
+    lastArticles
+  }
+}
+
 export const useHomePageData = ({locale, page, perPage}) => {
 
   const {data: featuredArticles} = useSWR(`/home/${locale}`, async ()=>{
