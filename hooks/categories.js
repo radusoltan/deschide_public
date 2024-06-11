@@ -2,18 +2,25 @@
 import useSWR from 'swr'
 import axios from "axios";
 
-export const useCategories = ({locale}) => {
+export const useCategories = ({locale, category}) => {
 
   const {data: items} = useSWR('/api/categories',async ()=>{
     const result = await fetch(`/${locale}/api/categories`)
     return result.json()
   })
 
+  const {data: categoryArticles, isLoading: categoryArticlesLoading} = useSWR('/api/category/articles', async ()=>{
+    const response = await fetch(`/${locale}/articles/${category}/api`)
+    return response.json()
+  })
+
 
 // http://localhost:3000/ro/articles/politic/api
 
   return {
-    items
+    items,
+    categoryArticles,
+    categoryArticlesLoading
   }
 }
 

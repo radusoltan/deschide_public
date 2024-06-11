@@ -1,35 +1,228 @@
 import {SpecialArticles} from "@/components/Homepage/SpecialArticles";
 import {FeaturedArticlesList} from "@/components/Homepage/FeaturedArticlesList";
 import {LatestNews} from "@/components/Homepage/LatestNews";
+import {Categories} from "@/components/Homepage/Categories";
+import {client} from "@/lib/elascticsearch";
+import {SlideNews} from "@/components/Homepage/SlideNews";
 
-export default function Page({ params: {locale}, searchParams }) {
+export async function getPoliticalArticles({locale}){
+
+  const articles = await client.search({
+    index: "articles",
+    body: {
+      query: {
+        bool: {
+          must: [
+            { match: { "translations.locale": locale} },
+            { match: { "category.translations.slug": 'politic' } },
+            { match: { "translations.status": 'P' } }
+          ]
+        }
+      },
+      from: 0,
+      size: 16,
+      sort: [
+        { "translations.published_at": {"order": "desc", "format": "strict_date_optional_time_nanos"} }
+      ]
+    }
+  })
+  const popularArticles = await client.search({
+    index: "articles",
+    body: {
+      query: {
+        bool: {
+          must: [
+            { match: { "translations.locale": locale} },
+            { match: { "category.translations.slug": 'politic' } },
+            { match: { "translations.status": 'P' } }
+          ]
+        }
+      },
+      from: 0,
+      size: 5,
+      sort: [
+        { "visits": {"order": "desc"} }
+      ]
+    }
+  })
+  return {
+    articles: articles.hits.hits.map(hit => hit._source),
+    popular: popularArticles.hits.hits.map(hit => hit._source),
+  };
+
+}
+export async function getSocialArticles({locale}){
+  const articles = await client.search({
+    index: "articles",
+    body: {
+      query: {
+        bool: {
+          must: [
+            { match: { "translations.locale": locale} },
+            { match: { "translations.status": 'P' } },
+            { match: { "category.translations.slug": 'social' } }
+          ]
+        }
+      },
+      from: 0,
+      size: 16,
+      sort: [
+        { "translations.published_at": {"order": "desc", "format": "strict_date_optional_time_nanos"} }
+      ]
+    }
+  })
+  const popularArticles = await client.search({
+    index: "articles",
+    body: {
+      query: {
+        bool: {
+          must: [
+            { match: { "translations.locale": locale} },
+            { match: { "category.translations.slug": 'social' } },
+            { match: { "translations.status": 'P' } }
+          ]
+        }
+      },
+      from: 0,
+      size: 5,
+      sort: [
+        { "visits": {"order": "desc"} }
+      ]
+    }
+  })
+
+  return {
+    articles: articles.hits.hits.map(hit => hit._source),
+    popular: popularArticles.hits.hits.map(hit=>hit._source),
+  };
+}
+export async function getFinancialArticles({locale}){
+  const articles = await client.search({
+    index: "articles",
+    body: {
+      query: {
+        bool: {
+          must: [
+            { match: { "translations.locale": locale} },
+            { match: { "category.translations.slug": 'economic' } },
+            { match: { "translations.status": 'P' } }
+          ]
+        }
+      },
+      from: 0,
+      size: 16,
+      sort: [
+        { "translations.published_at": {"order": "desc", "format": "strict_date_optional_time_nanos"} }
+      ]
+    }
+  })
+  const popularArticles = await client.search({
+    index: "articles",
+    body: {
+      query: {
+        bool: {
+          must: [
+            { match: { "translations.locale": locale} },
+            { match: { "category.translations.slug": 'economic' } },
+            { match: { "translations.status": 'P' } }
+          ]
+        }
+      },
+      from: 0,
+      size: 5,
+      sort: [
+        { "visits": {"order": "desc"} }
+      ]
+    }
+  })
+
+  return {
+    articles: articles.hits.hits.map(hit => hit._source),
+    popular: popularArticles.hits.hits.map(hit => hit._source),
+  };
+}
+export async function getInternationalArticles({locale}){
+  const articles = await client.search({
+    index: "articles",
+    body: {
+      query: {
+        bool: {
+          must: [
+            { match: { "translations.locale": locale} },
+            { match: { "category.translations.slug": 'externe' } },
+            { match: { "translations.status": 'P' } }
+          ]
+        }
+      },
+      from: 0,
+      size: 16,
+      sort: [
+        { "translations.published_at": {"order": "desc", "format": "strict_date_optional_time_nanos"} }
+      ]
+    }
+  })
+
+  const popularArticles = await client.search({
+    index: "articles",
+    body: {
+      query: {
+        bool: {
+          must: [
+            { match: { "translations.locale": locale} },
+            { match: { "category.translations.slug": 'externe' } },
+            { match: { "translations.status": 'P' } }
+          ]
+        }
+      },
+      from: 0,
+      size: 5,
+      sort: [
+        { "visits": {"order": "desc"} }
+      ]
+    }
+  })
+
+  return {
+    articles: articles.hits.hits.map(hit => hit._source),
+    popular: popularArticles.hits.hits.map(hit => hit._source),
+  };
+}
+
+export default async function Page({ params: {locale}, }) {
+
+  const { articles: politicalArticles, popular: politicalPopular} = await getPoliticalArticles({locale})
+  const { articles: socialArticles, popular: socialPopular} = await getSocialArticles({locale})
+  const { articles: financialArticles, popular: financialPopular} = await getFinancialArticles({locale})
+  const { articles: internationalArticles, popular: internationalPopular} = await getInternationalArticles({locale})
+
   return <>
-    <SpecialArticles locale={locale} />
-    <FeaturedArticlesList locale={locale} />
+    <SpecialArticles />
+    <FeaturedArticlesList />
+
     <div className="bg-white py-6 shadow-2xl">
       <div className="xl:container mx-auto px-3 sm:px-4 xl:px-2">
         <div className="flex flex-row flex-wrap">
 
-          <div className="flex-shrink max-w-full w-full lg:w-1/3 lg:pr-8 lg:pb-10 order-first">
-            <div className="w-full py-3 bg-red-600">
-              <h2 className="text-white text-2xl font-bold font-category">
-                <span className="inline-block h-5 border-l-4 border-red-600 mr-2"></span>{
+        {/* Left */}
+        <LatestNews />
+          {/* right */}
+          <Categories
+              politicalArticles={politicalArticles}
+              politicalPopular={politicalPopular}
+              socialArticles={socialArticles}
+              socialPopular={socialPopular}
+              financialArticles={financialArticles}
+              financialPopular={financialPopular}
+              internationalArticles={internationalArticles}
+              internationalPopular={internationalPopular}
+          />
 
-                locale === "ro" ? "Ultimele Știri" :
-                    locale === "ru" ? "Последние Новости" :
-                        "Last News"
-
-              }</h2>
-            </div>
-            <div className="w-full bg-white sticky top-0 mr-6">
-              <div className="mb-6">
-                <LatestNews locale={locale} />
-              </div>
-            </div>
-          </div>
 
         </div>
       </div>
     </div>
+    <SlideNews />
+
+
   </>
 }

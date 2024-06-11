@@ -12,9 +12,9 @@ export const ArticleItem = ({article, locale}) => {
 
   const imageSrc = width < 768 ?
       process.env.NEXT_PUBLIC_BACKEND_URL + '/' +
-        images.find(i => i.is_main)?.thumbnails.find(th => th.rendition_id === 2).path :
+      images.find(i => i.is_main)?.thumbnails.find(th => th.rendition_id === 2).path :
       process.env.NEXT_PUBLIC_BACKEND_URL + '/' +
-        images.find(i => i.is_main)?.thumbnails.find(th => th.rendition_id === 1).path
+      images.find(i => i.is_main)?.thumbnails.find(th => th.rendition_id === 1).path
 
   const imageWidth = width < 768 ?
       images.find(i => i.is_main)?.thumbnails.find(th => th.rendition_id === 2).width :

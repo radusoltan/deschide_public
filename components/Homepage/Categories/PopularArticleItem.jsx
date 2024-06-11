@@ -1,12 +1,14 @@
-import moment from "moment";
+import {useParams} from "next/navigation";
 import useWindowSize from "@/hooks/useWindowSize";
-import Image from "next/image";
+import moment from "moment";
 import Link from "next/link";
+import Image from "next/image";
 
-export const PopularArticleItem = ({article, locale}) => {
+export const PopularArticleItem = ({article}) => {
+  const {locale} = useParams()
 
   const {images, translations, visits, category, article_id} = article
-  moment.locale(locale)
+
 
   const {width} = useWindowSize();
 
@@ -19,6 +21,7 @@ export const PopularArticleItem = ({article, locale}) => {
   const {title, published_at, slug} = translations?.find(t => t.locale === locale);
 
   const date = moment(published_at).format("MM Do YYYY, h:mm")
+
 
   return <div
       className="max-w-full w-full px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
