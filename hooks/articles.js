@@ -4,27 +4,27 @@ import axios from '@/lib/axios'
 
 export const useArticles = ({locale})=>{
 
-  const {data: specialArticles} = useSWR(`/home/${locale}/specialArticle`, async ()=>{
+  const {data: specialArticles, error: specialArticlesError, isLoading: specialArticlesLoading} = useSWR(`/home/${locale}/specialArticle`, async ()=>{
 
     const response = await fetch(`/${locale}/api/specialArticle`)
     return await response.json()
 
   })
 
-  const {data: featuredArticles} = useSWR(`/home/${locale}`, async ()=>{
+  const {data: featuredArticles, error: featuredArticlesError, isLoading: featuredArticlesLoading} = useSWR(`/home/${locale}`, async ()=>{
     const response = await fetch(`/${locale}/api/featuredArticles`)
     return await response.json()
   })
 
-  const {data: lastArticles} = useSWR(`/home/${locale}/lastArticles`, async ()=>{
+  const {data: lastArticles, error: lastArticlesError, isLoading: lastArticlesLoading} = useSWR(`/home/${locale}/lastArticles`, async ()=>{
     const response = await fetch(`/${locale}/api/lastArticles`)
     return await response.json()
   })
 
   return {
-    specialArticles,
-    featuredArticles,
-    lastArticles
+    specialArticles, specialArticlesError, specialArticlesLoading,
+    featuredArticles, featuredArticlesError, featuredArticlesLoading,
+    lastArticles, lastArticlesError, lastArticlesLoading
   }
 }
 
@@ -35,7 +35,7 @@ export const useHomePageData = ({locale, page, perPage}) => {
     return await response.json()
   })
 
-  const {data: lastArticles} = useSWR(`/home/${locale}/lastArticles`, async ()=>{
+  const {data: lastArticles } = useSWR(`/home/${locale}/lastArticles`, async ()=>{
     const response = await fetch(`/${locale}/api/lastArticles`)
     return await response.json()
   })

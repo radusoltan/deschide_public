@@ -14,7 +14,7 @@ export const LatestNews = ({locale}) => {
         <div className="w-full">
           <Link href={`/${locale}/articles/${article._source.category.translations.find(t=>t.locale===locale).slug}/${article._source.article_id}/${article._source.translations?.find(t => t.locale === locale).slug}`}>
             <h1 className="font-title font-bold">
-              {article._source.translations?.find(t => t.locale === locale).title}
+              {article._source.title}
             </h1>
           </Link>
         </div>

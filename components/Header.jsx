@@ -2,6 +2,7 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faFacebookF, faTelegram, faTwitter} from "@fortawesome/free-brands-svg-icons";
 import {LanguageSwitcher} from "@/components/LanguageSwitcher";
+import {Navigation} from "@/components/Navigation";
 
 export const Header = ({locale})=>{
 
@@ -24,7 +25,7 @@ export const Header = ({locale})=>{
       </div>
     </div>
     <div className="sticky">
-      {/*<Navigation locale={locale}/>*/}
+      <Navigation locale={locale}/>
     </div>
   </header>
 }
