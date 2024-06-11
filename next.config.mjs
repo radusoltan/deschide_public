@@ -4,7 +4,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'http',
-        hostname: 'api.deschide.md',
+        hostname: 'deschide.api',
       }
     ]
   },

@@ -5,7 +5,7 @@ import {LanguageSwitcher} from "@/components/LanguageSwitcher";
 import {useParams } from "next/navigation";
 import Link from "next/link";
 import {useCategories} from "@/hooks/categories";
-import logo from './../public/logo.svg'
+import logo from '../../public/logo.svg'
 import Image from 'next/image'
 import {faBars, faXmark} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
