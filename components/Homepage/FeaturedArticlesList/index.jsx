@@ -48,7 +48,7 @@ export const FeaturedArticlesList = () => {
           animate="visible"
       >
 
-        {articles && <First article={articles[0]?._source}/>}
+        {articles !== undefined && articles?.length > 0 && <First article={articles[0]?._source}/>}
         <div className="flex-shrink max-w-full w-full lg:w-1/2">
           <div className="box-one flex flex-row flex-wrap">{
             articles?.map((article, index) =>
