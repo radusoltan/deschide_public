@@ -4,6 +4,8 @@ import {LatestNews} from "@/components/Homepage/LatestNews";
 import {Categories} from "@/components/Homepage/Categories";
 import {client} from "@/lib/elascticsearch";
 import {SlideNews} from "@/components/Homepage/SlideNews";
+import Image from "next/image";
+import gov from '@/public/guvernul.jpg'
 
 export async function getPoliticalArticles({locale}){
 
@@ -198,6 +200,18 @@ export default async function Page({ params: {locale}, }) {
   return <>
     <SpecialArticles />
     <FeaturedArticlesList />
+
+    <div className="flex justify-center items-center py-6">
+      <a href="http://drrm.gov.ro/w/">
+        <Image
+            src={gov}
+            width={1100}
+            height={130}
+            alt="Guvernul Romaniei"
+        />
+      </a>
+
+    </div>
 
     <div className="bg-white py-6 shadow-2xl">
       <div className="xl:container mx-auto px-3 sm:px-4 xl:px-2">
