@@ -10,8 +10,9 @@ import {faCalendarDays, faEye, faUser} from "@fortawesome/free-solid-svg-icons";
 import {faInstagram, faSquareFacebook, faSquareTwitter, faTelegram} from "@fortawesome/free-brands-svg-icons";
 import Link from "next/link";
 import {useParams} from "next/navigation";
-import {FacebookShareButton, FacebookShareCount} from "react-share";
+import {FacebookShareButton} from "react-share";
 import gov from "@/public/guvernul.jpg";
+import moment from "moment";
 
 export const Article = () => {
   const { locale, article, category, slug } = useParams()
@@ -25,7 +26,11 @@ export const Article = () => {
   const thumbnail = width < 768 ?
       mainImage?.thumbnails?.find(t=>t.rendition_id===2) :
       mainImage?.thumbnails?.find(t=>t.rendition_id===1)
+
+  const shareUrl = process.env.NEXT_PUBLIC_APP_URL + `/${locale}/articles/${category}/${article}/${slug}`
+
   return <>
+
     {/* advertisement */}
     <div className="bg-gray-50 py-4">
       <div className="xl:container mx-auto px-3 sm:px-4 xl:px-2">
@@ -59,7 +64,7 @@ export const Article = () => {
                     <p className="mb-5"
                        dangerouslySetInnerHTML={{__html: articleData?.translations.find(t => t.locale === locale).lead}}/>
                     <figure className="text-center mb-6">
-                      {
+                    {
                           thumbnail && <>
                             <Image
                                 src={process.env.NEXT_PUBLIC_BACKEND_URL + '/' + thumbnail?.path}
@@ -83,28 +88,24 @@ export const Article = () => {
                     <span className="mr-2 md:mr-4 font-text">
                       {
                           articleData?.authors.length > 0 && <><FontAwesomeIcon
-                              icon={faUser}/> by {articleData?.authors.map((author, index) => <a className="font-semibold"
+                              icon={faUser}/> by {articleData?.authors.map((author, index) => <span className="font-semibold"
                                                                                                  href="#"
-                                                                                                 key={index}>{author.full_name}</a>)}
+                                                                                                 key={index}>{author.full_name}</span>)}
                           </>
                       }
 
 
                       </span>
 
-                      <time className="mr-2 md:mr-4 font-text" dateTime="2020-10-22 10:00">
-                        <FontAwesomeIcon icon={faCalendarDays}/>
-                        <time>Oct 22, 2020</time>
+                      <time className="mr-2 md:mr-4 font-text" dateTime={moment(articleData?.translations.find(t=>t.locale===locale).published_at).format('DD-MM-YYYY')}>
+                        <FontAwesomeIcon icon={faCalendarDays}/> {
+                          moment(articleData?.translations.find(t=>t.locale===locale).published_at).format('DD-MM-YYYY')
+                      }
                       </time>
                       {/*view*/}
                       <span className="mr-2 md:mr-4 font-text">
 
                       <FontAwesomeIcon icon={faEye}/> {articleData?.visits} x view
-                      </span>
-                      <span className="mr-2 md:mr-4 font-text">
-
-                      <FontAwesomeIcon icon={faEye}/> <FacebookShareCount
-                          url={process.env.NEXT_PUBLIC_APP_URL + `/${locale}/articles/${category}/${article}/${slug}`}/>
                       </span>
 
                     </div>
@@ -173,15 +174,15 @@ export const Article = () => {
                 <h2 className="text-lg font-bold">{t("homepage.popular_news")}</h2>
               </div>
               <ul className="post-number">
-                {popularArticles && popularArticles.map((article,index)=><li
+                {popularArticles && popularArticles.map((article, index) => <li
                     key={index}
                     className="border-b border-gray-100 hover:bg-gray-50"
                 >
                   <Link
-                      href={`/${locale}/articles/${article._source.category.translations.find(t => t.locale === locale).slug}/${article._source.article_id}/${article._source.translations?.find(t=>t.locale===locale)?.slug}`}
+                      href={`/${locale}/articles/${article._source.category.translations.find(t => t.locale === locale).slug}/${article._source.article_id}/${article._source.translations?.find(t => t.locale === locale)?.slug}`}
                       className="text-lg font-bold px-6 py-3 flex flex-row items-center"
                   >{
-                    article?._source.translations.find(t=>t.locale === locale).title
+                    article?._source.translations.find(t => t.locale === locale).title
                   }</Link>
                 </li>)}
               </ul>

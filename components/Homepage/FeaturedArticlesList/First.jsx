@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import useWindowSize from "@/hooks/useWindowSize";
 import {useParams} from "next/navigation";
+import moment from "moment";
 
 export const First = ({article}) => {
   const {locale} = useParams()
@@ -9,7 +10,7 @@ export const First = ({article}) => {
 
   const {article_id, translations, images, category} = article
 
-  const {title, slug} = article.translations.find(t=>t.locale===locale)
+  const {title, slug, published_at} = article.translations.find(t=>t.locale===locale)
 
   const articleLink = `/${locale}/articles/${category?.translations.find(t => t.locale === locale).slug}/${article_id}/${slug}`
 
@@ -26,6 +27,10 @@ export const First = ({article}) => {
       alt={title}
   />
 
+  const publishedAt = moment(published_at)
+  const oneHourAgo = moment().subtract(1,'hours')
+
+
   return <div className="flex-shrink max-w-full w-full lg:w-1/2 pb-1 lg:pb-0 lg:pr-1">
     <div className="relative hover-img max-h-98 overflow-hidden">
       <Link href={articleLink}>
@@ -34,6 +39,7 @@ export const First = ({article}) => {
       <div className="absolute px-5 pt-8 pb-5 bottom-0 w-full bg-gradient-to-t from-slate-900">
         <Link
             href={`/${locale}/articles/${category?.translations.find(t => t.locale === locale).slug}/${article_id}/${translations?.find(t => t.locale === locale)?.slug}`}>
+          {publishedAt.isAfter(oneHourAgo) && <span className="bg-red-600 text-white p-1">NEW</span>}
           <h2 className="text-3xl font-bold capitalize text-white mb-3 font-title">
             {title}
           </h2>

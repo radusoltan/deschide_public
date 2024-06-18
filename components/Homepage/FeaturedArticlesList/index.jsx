@@ -9,6 +9,7 @@ import {shuffleArray} from "@/lib/helpers";
 import '@splidejs/react-splide/css';
 import '@splidejs/splide/dist/css/themes/splide-default.min.css';
 import {ArticleItem} from "@/components/Homepage/FeaturedArticlesList/ArticleItem";
+import {FeaturedArticles} from "@/components/LoadingSkeletons/FeaturedArticles";
 
 export const FeaturedArticlesList = () => {
   const {locale} = useParams()
@@ -27,7 +28,7 @@ export const FeaturedArticlesList = () => {
   }, [featuredArticles]);
 
 
-  if (featuredArticlesLoading) return <>Loading ...</>
+  if (featuredArticlesLoading) return <FeaturedArticles />
 
   return <div className="bg-white py-6">
     <div className="xl:container mx-auto px-4 sm:px-4 xl:px-2">

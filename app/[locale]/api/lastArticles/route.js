@@ -42,12 +42,6 @@ export const GET = async (request,{params:{locale}})=>{
       currentPage: page,
 
     }
-  });
-  // try {
-  //
-  // } catch (e) {
-  //   console.log(e)
-  //   return  NextResponse.json([]);
-  // }
+  })
 
 }
