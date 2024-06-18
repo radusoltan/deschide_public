@@ -30,17 +30,17 @@ export const metadata = {
     url: 'https://deschide.md',
     siteName: 'Deschide.MD',
     images: [
-      {
-        url: 'https://nextjs.org/og.png', // Must be an absolute URL
-        width: 800,
-        height: 600,
-      },
-      {
-        url: 'https://nextjs.org/og-alt.png', // Must be an absolute URL
-        width: 1800,
-        height: 1600,
-        alt: 'My custom alt',
-      },
+      // {
+      //   url: 'https://nextjs.org/og.png', // Must be an absolute URL
+      //   width: 800,
+      //   height: 600,
+      // },
+      // {
+      //   url: 'https://nextjs.org/og-alt.png', // Must be an absolute URL
+      //   width: 1800,
+      //   height: 1600,
+      //   alt: 'My custom alt',
+      // },
     ],
     locale: 'ro_RO',
     type: 'website',
@@ -48,9 +48,9 @@ export const metadata = {
   alternates: {
     canonical: '/',
     languages: {
-      'en-US': '/en',
-      'ro-RO': '/ro',
-      'ru-RU': '/ru',
+      'en_US': '/en',
+      'ro_RO': '/ro',
+      'ru_RU': '/ru',
     },
   },
 };

@@ -20,7 +20,5 @@ export async function GET(request, {params: {locale, category}}) {
     }
   })
 
-  console.log(category, articles.hits.hits)
-
   return NextResponse.json(articles.hits.hits)
 }

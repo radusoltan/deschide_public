@@ -20,9 +20,6 @@ export const Categories = ({
 
   const categories = items?.data.filter((item) => item.id >= 1 && item.id <= 4)
 
-  console.log(categories)
-
-
   return <div className="flex-shrink max-w-full w-full lg:w-2/3">
     {
       categories?.map((category)=><CategoryArticles

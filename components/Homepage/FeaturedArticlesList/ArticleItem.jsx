@@ -2,6 +2,7 @@ import {motion} from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import useWindowSize from "@/hooks/useWindowSize";
+import moment from "moment/moment";
 
 export const ArticleItem = ({article, locale}) => {
   const { width } = useWindowSize();
@@ -32,6 +33,9 @@ export const ArticleItem = ({article, locale}) => {
       alt={translations?.find(t => t.locale === locale)?.title}
   />
 
+  const publishedAt = moment(translations?.find(t => t.locale === locale).published_at)
+  const oneHourAgo = moment().subtract(1,'hours')
+
 
   return <motion.article
       className="flex-shrink max-w-full w-full sm:w-1/2"
@@ -51,8 +55,9 @@ export const ArticleItem = ({article, locale}) => {
       <div
           className="absolute px-4 pt-7 pb-4 bottom-0 w-full bg-gradient-to-t from-slate-900">
         <Link
-            href={`/${locale}/articles/${category.translations.find(t => t.locale === locale).slug}/${article_id}/${translations?.find(t =>t.locale===locale)?.slug}`}>
-          <h2 className="font-title text-lg font-bold capitalize leading-tight text-white mb-1">{
+            href={`/${locale}/articles/${category.translations.find(t => t.locale === locale).slug}/${article_id}/${translations?.find(t => t.locale === locale)?.slug}`}>
+          {publishedAt.isAfter(oneHourAgo) && <span className="bg-red-600 text-white p-1 text-sm rounded-md">nou</span>}
+          <h2 className="font-title text-lg font-bold capitalize leading-tight text-white mt-2 mb-1">{
             article._source.translations.find(t => t.locale === locale)?.title
           }</h2>
         </Link>

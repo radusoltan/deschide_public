@@ -4,6 +4,7 @@ import {useArticles} from "@/hooks/articles";
 import useWindowSize from "@/hooks/useWindowSize";
 import Image from "next/image";
 import Link from "next/link";
+import {SpecialArticle} from "@/components/LoadingSkeletons/SpecialArticle";
 
 export const SpecialArticles = () => {
 
@@ -12,7 +13,7 @@ export const SpecialArticles = () => {
 
   const {specialArticles, specialArticlesLoading} = useArticles({locale})
 
-  if (specialArticlesLoading) return <>LOADING ...</>
+  if (specialArticlesLoading) return <SpecialArticle/>
 
   return specialArticles?.length > 0 && <>
 
