@@ -4,6 +4,7 @@ import Link from "next/link";
 import {Articles} from "@/components/Category/Articles";
 import add_img from "@/public/img/ads/250.jpg"
 import Image from "next/image";
+import moment from "moment/moment";
 
 
 
@@ -93,16 +94,20 @@ return <div className="bg-gray-50 py-6">
         />
       </div>
       <div className="flex-shrink max-w-full w-full lg:w-1/3 lg:pl-8 lg:pt-14 lg:pb-8 order-last">
-        <div className="w-full bg-white">
+        <div className="w-full bg-white border px-5 pt-5 rounded-lg">
           <div className="mb-6">
-
-            <div className="p-4 bg-gray-100">
-              <h2 className="text-lg font-bold">Popular News</h2>
-            </div>
+            <div className="w-full py-3">
+              <h2 className="text-gray-800 text-lg font-bold font-category">
+                <span className="inline-block h-4 border-l-4 border-red-600 mr-2"></span>{
+                locale === "ro" ? "Cele mai deschise" :
+                    locale === "ru" ? "Популярные Новости" :
+                        "Popular News"
+              }</h2></div>
             <ul className="post-number">{
               popular.map((article, index) => (
+
                   <li
-                      className="border-b border-gray-100 hover:bg-gray-50 font-title"
+                      className=" flex-row border-b border-gray-100 hover:bg-gray-50 font-title"
                       key={index}
                   >
                     <Link
@@ -111,6 +116,11 @@ return <div className="bg-gray-50 py-6">
                     >{
                       article?.translations.find(t => t.locale === locale).title
                     }</Link>
+                    <div className="text-gray-500 text-sm lg:ml-16 ml-20 font-text">
+                      {
+                        moment(article?.translations.find(t => t.locale === locale).published_at).format("MM Do YYYY, h:mm")
+                      }, <span className="font-light">views: {article?.visits}</span>
+                    </div>
                   </li>
               ))
             }</ul>

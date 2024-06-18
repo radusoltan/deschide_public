@@ -45,6 +45,14 @@ export const metadata = {
     locale: 'ro_RO',
     type: 'website',
   },
+  alternates: {
+    canonical: '/',
+    languages: {
+      'en-US': '/en',
+      'ro-RO': '/ro',
+      'ru-RU': '/ru',
+    },
+  },
 };
 
 export default async function RootLayout({ children, params: { locale } }) {

@@ -1,10 +1,11 @@
+
 import useWindowSize from "@/hooks/useWindowSize";
 import Image from "next/image";
 
 export const ArticleImage = ({image, title}) => {
 
   const {width} = useWindowSize();
-  const renditionId = width < 768 ? 1 : 2;
+  const renditionId = width < 768 ? 2 : 1;
   const thumbnail = image.thumbnails.find(t=>t.rendition_id === renditionId)
 
   return <Image

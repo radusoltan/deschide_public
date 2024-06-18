@@ -4,11 +4,13 @@ import {useParams} from "next/navigation";
 import {useArticles} from "@/hooks/articles";
 import {ArticleItem} from "@/components/Homepage/LatestNews/ArticleItem";
 import Link from "next/link";
+import {faTelegram} from "@fortawesome/free-brands-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 export const LatestNews = () => {
 const {locale} = useParams()
 const {lastArticles, lastArticlesLoading} = useArticles({locale})
-
+  // const articlesToDisplay = lastArticles.lastPublishedArticles;
 
   if (lastArticlesLoading) return <>LOADING ...</>
 
@@ -25,11 +27,26 @@ const {lastArticles, lastArticlesLoading} = useArticles({locale})
       }
       </h2>
     </div>
-    <div className="w-full bg-white sticky top-0 mr-6">
+    <div className="w-full bg-white mr-6 sticky top-0 ">
       <div className="mb-6">
         <div className="flex flex-row flex-wrap -mx-3">
           {
-            lastArticles.lastPublishedArticles.map((article, index) => <ArticleItem key={index} article={article._source}/>)
+            lastArticles?.lastPublishedArticles.slice(0,5).map((article, index) => <ArticleItem key={index} article={article._source}/>)
+          }
+          <div
+              className="flex-shrink max-w-full w-full md:w-1/2 lg:w-full xl:w-full px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
+            <a href="https://t.me/deschide_md">
+              <div className="w-full flex-row shadow-sm border-b-2 items-center pb-6">
+                <span className="text-blue-500 text-5xl"><FontAwesomeIcon icon={faTelegram}/></span>
+                <span className="px-6 font-bold text-gray-500 font-text mt-0">Urmariti-ne pe Telegram</span>
+              </div>
+            </a>
+
+
+          </div>
+          {
+            lastArticles?.lastPublishedArticles.slice(5).map((article, index) => <ArticleItem key={index + 5}
+                                                                                              article={article._source}/>)
           }
           <span className="w-full mt-6"/>
           <Link href={`/${locale}/articles/all?page=1&limit=15`}
