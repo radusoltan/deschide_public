@@ -6,6 +6,7 @@ import {client} from "@/lib/elascticsearch";
 import {SlideNews} from "@/components/Homepage/SlideNews";
 import Image from "next/image";
 import gov from '@/public/guvernul.jpg'
+import {VideoArticles} from "@/components/Homepage/VideoArticles";
 
 export async function getPoliticalArticles({locale}){
 
@@ -217,8 +218,8 @@ export default async function Page({ params: {locale}, }) {
       <div className="xl:container mx-auto px-3 sm:px-4 xl:px-2">
         <div className="flex flex-row flex-wrap">
 
-        {/* Left */}
-        <LatestNews />
+          {/* Left */}
+          <LatestNews />
           {/* right */}
           <Categories
               politicalArticles={politicalArticles}
@@ -230,12 +231,13 @@ export default async function Page({ params: {locale}, }) {
               internationalArticles={internationalArticles}
               internationalPopular={internationalPopular}
           />
-
-
         </div>
       </div>
     </div>
     <SlideNews />
+    {/*<VideoArticles />*/}
+
+
 
 
   </>

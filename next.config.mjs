@@ -5,6 +5,10 @@ const nextConfig = {
       {
         protocol: 'http',
         hostname: 'deschide.api',
+      },
+      {
+        protocol: 'https',
+        hostname: 'dummyimage.com',
       }
     ]
   },
