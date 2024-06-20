@@ -7,6 +7,7 @@ import {SlideNews} from "@/components/Homepage/SlideNews";
 import Image from "next/image";
 import gov from '@/public/guvernul.jpg'
 import {VideoArticles} from "@/components/Homepage/VideoArticles";
+import {LiveArticle} from "@/components/Homepage/LiveArticle";
 
 export async function getPoliticalArticles({locale}){
 
@@ -199,6 +200,7 @@ export default async function Page({ params: {locale}, }) {
   const { articles: internationalArticles, popular: internationalPopular} = await getInternationalArticles({locale})
 
   return <>
+    <LiveArticle />
     <SpecialArticles />
     <FeaturedArticlesList />
 
@@ -214,7 +216,7 @@ export default async function Page({ params: {locale}, }) {
 
     </div>
 
-    <div className="bg-white py-6 shadow-2xl">
+    <div className="bg-white py-6">
       <div className="xl:container mx-auto px-3 sm:px-4 xl:px-2">
         <div className="flex flex-row flex-wrap">
 
@@ -235,7 +237,7 @@ export default async function Page({ params: {locale}, }) {
       </div>
     </div>
     <SlideNews />
-    {/*<VideoArticles />*/}
+    <VideoArticles />
 
 
 

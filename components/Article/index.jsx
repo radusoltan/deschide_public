@@ -1,7 +1,6 @@
 "use client"
 import {useArticle} from "@/hooks/articles";
 import {useCategoryArticles} from "@/hooks/categories";
-import {useTranslation} from "@/i18n/client";
 import useWindowSize from "@/hooks/useWindowSize";
 import Image from "next/image";
 import ads_728 from "@/public/img/ads/ads_728.jpg";
@@ -18,7 +17,7 @@ export const Article = () => {
   const { locale, article, category, slug } = useParams()
   const {articleData} = useArticle({article, locale});
   const {popularArticles} = useCategoryArticles({locale, category})
-  const {t} = useTranslation()
+
 
   const { width } = useWindowSize();
 
@@ -27,7 +26,7 @@ export const Article = () => {
       mainImage?.thumbnails?.find(t=>t.rendition_id===2) :
       mainImage?.thumbnails?.find(t=>t.rendition_id===1)
 
-  const shareUrl = process.env.NEXT_PUBLIC_APP_URL + `/${locale}/articles/${category}/${article}/${slug}`
+  // const shareUrl = process.env.NEXT_PUBLIC_APP_URL + `/${locale}/articles/${category}/${article}/${slug}`
 
   return <>
 
@@ -54,7 +53,7 @@ export const Article = () => {
               <div className="w-full py-3 mb-3">
                 <h2 className="text-gray-800 text-3xl font-bold font-title">
                   <span className="inline-block h-5 border-l-3 border-red-600 mr-2"></span>
-                  {articleData?.translations.find(t => t.locale === locale).title}
+                  {articleData?.translations.find(t => t.locale === locale)?.title}
                 </h2>
               </div>
               <div className="flex flex-row flex-wrap -mx-3">
@@ -62,7 +61,7 @@ export const Article = () => {
                   {/* Article Content */}
                   <div className="leading-relaxed pb-4 font-text">
                     <p className="mb-5"
-                       dangerouslySetInnerHTML={{__html: articleData?.translations.find(t => t.locale === locale).lead}}/>
+                       dangerouslySetInnerHTML={{__html: articleData?.translations.find(t => t.locale === locale)?.lead}}/>
                     <figure className="text-center mb-6">
                     {
                           thumbnail && <>
@@ -70,7 +69,7 @@ export const Article = () => {
                                 src={process.env.NEXT_PUBLIC_BACKEND_URL + '/' + thumbnail?.path}
                                 width={thumbnail?.width}
                                 height={thumbnail?.height}
-                                alt={articleData?.translations.find(t => t.locale === locale).title}
+                                alt={articleData?.translations.find(t => t.locale === locale)?.title}
                             />
                             <figcaption>{mainImage?.description} | FOTO: <i>{mainImage.author}</i></figcaption>
                           </>
@@ -79,7 +78,7 @@ export const Article = () => {
 
                     </figure>
                     <div className="mb-5 article-body"
-                         dangerouslySetInnerHTML={{__html: articleData?.translations.find(t => t.locale === locale).body}}/>
+                         dangerouslySetInnerHTML={{__html: articleData?.translations.find(t => t.locale === locale)?.body}}/>
                   </div>
                   <div
                       className="relative flex flex-row items-center justify-between overflow-hidden bg-gray-100 dark:bg-gray-900 dark:bg-opacity-20 mt-12 mb-2 px-6 py-2">
@@ -88,18 +87,17 @@ export const Article = () => {
                     <span className="mr-2 md:mr-4 font-text">
                       {
                           articleData?.authors.length > 0 && <><FontAwesomeIcon
-                              icon={faUser}/> by {articleData?.authors.map((author, index) => <span className="font-semibold"
-                                                                                                 href="#"
-                                                                                                 key={index}>{author.full_name}</span>)}
+                              icon={faUser}/>  {articleData?.authors.map((author, index) => <span className="font-semibold"
+                                                                                                 key={index}>{author.full_name}, </span>)}
                           </>
                       }
 
 
                       </span>
 
-                      <time className="mr-2 md:mr-4 font-text" dateTime={moment(articleData?.translations.find(t=>t.locale===locale).published_at).format('DD-MM-YYYY')}>
+                      <time className="mr-2 md:mr-4 font-text" dateTime={moment(articleData?.translations.find(t=>t.locale===locale)?.published_at).format('DD-MM-YYYY')}>
                         <FontAwesomeIcon icon={faCalendarDays}/> {
-                          moment(articleData?.translations.find(t=>t.locale===locale).published_at).format('DD-MM-YYYY')
+                          moment(articleData?.translations.find(t=>t.locale===locale)?.published_at).format('DD-MM-YYYY')
                       }
                       </time>
                       {/*view*/}
@@ -168,24 +166,36 @@ export const Article = () => {
             </div>
           </div>
           {/* Right */}
-          <div className="flex-shrink max-w-full w-full lg:w-1/3 lg:pl-8 lg:pt-14 lg:pb-8 order-first lg:order-last">
-            <div className="w-full bg-white">
-              <div className="mb-6 bg-gray-100">
-                <h2 className="text-lg font-bold">{t("homepage.popular_news")}</h2>
+          <div className="flex-shrink max-w-full w-full lg:w-1/3 lg:pl-8 lg:pt-14 lg:pb-8 order-last lg:order-last">
+            <div className="w-full bg-white border px-5 pt-5 rounded-lg">
+              <div className="mb-6">
+                <div className="w-full py-3">
+                  <h2 className="text-gray-800 text-lg font-bold font-category">
+                    <span className="inline-block h-4 border-l-4 border-red-600 mr-2"></span>{
+                    locale === "ro" ? "Cele mai deschise" :
+                        locale === "ru" ? "Популярные Новости" :
+                            "Popular News"
+                  }</h2></div>
+                <ul className="post-number">
+                  {popularArticles && popularArticles.map((article, index) => <li
+                      key={index}
+                      className="flex-row border-b border-gray-100 hover:bg-gray-50 font-title"
+                  >
+                    <Link
+                        href={`/${locale}/articles/${article._source.category.translations.find(t => t.locale === locale).slug}/${article._source.article_id}/${article._source.translations?.find(t => t.locale === locale)?.slug}`}
+                        className="text-lg font-bold px-6 py-3 flex flex-row items-center"
+                    >{
+                      article?._source.translations.find(t => t.locale === locale)?.title
+                    }</Link>
+                    <div className="text-gray-500 text-sm lg:ml-16 ml-20 font-text">
+                      {
+                        moment(article?._source.translations.find(t => t.locale === locale)?.published_at).format("MM Do YYYY, h:mm")
+                      }, <span className="font-light">views: {article?._source.visits}</span>
+                    </div>
+                  </li>)}
+                </ul>
               </div>
-              <ul className="post-number">
-                {popularArticles && popularArticles.map((article, index) => <li
-                    key={index}
-                    className="border-b border-gray-100 hover:bg-gray-50"
-                >
-                  <Link
-                      href={`/${locale}/articles/${article._source.category.translations.find(t => t.locale === locale).slug}/${article._source.article_id}/${article._source.translations?.find(t => t.locale === locale)?.slug}`}
-                      className="text-lg font-bold px-6 py-3 flex flex-row items-center"
-                  >{
-                    article?._source.translations.find(t => t.locale === locale).title
-                  }</Link>
-                </li>)}
-              </ul>
+
             </div>
             <div className="text-sm py-6 sticky">
               <div className="w-full text-center">

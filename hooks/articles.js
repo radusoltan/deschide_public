@@ -1,6 +1,5 @@
 "use client"
 import useSWR from 'swr'
-import axios from '@/lib/axios'
 
 export const useArticles = ({locale})=>{
 
@@ -21,14 +20,20 @@ export const useArticles = ({locale})=>{
     return await response.json()
   })
 
+  const {data: liveArticle, error: liveArticleError, isLoading: liveArticleLoading} = useSWR(`/home/${locale}/liveArticle`, async ()=>{
+    const response = await fetch(`/${locale}/api/live`)
+    return await response.json()
+  })
+
   return {
     specialArticles, specialArticlesError, specialArticlesLoading,
     featuredArticles, featuredArticlesError, featuredArticlesLoading,
-    lastArticles, lastArticlesError, lastArticlesLoading
+    lastArticles, lastArticlesError, lastArticlesLoading,
+    liveArticle, liveArticleError, liveArticleLoading
   }
 }
 
-export const useHomePageData = ({locale, page, perPage}) => {
+export const useHomePageData = ({locale}) => {
 
   const {data: featuredArticles} = useSWR(`/home/${locale}`, async ()=>{
     const response = await fetch(`/${locale}/api/featuredArticles`)
@@ -52,63 +57,23 @@ export const useHomePageData = ({locale, page, perPage}) => {
     return await response.json()
   })
 
+  const {data: videos} = useSWR(`/home/${locale}/videos`, async ()=>{
+    const response = await fetch(`/${locale}/articles/api/videos`)
+    return await response.json()
+  })
+
   return {
     featuredArticles,
     lastArticles,
     specialArticle,
-    editorials
+    editorials,
+    videos
   }
 
 }
 
-// export const useFeaturedArticles = ({locale, article_id}) => {
-//
-//
-//
-//   const {data: featuredArticles} = useSWR('articles', async ()=>{
-//
-//     const result = await axios.get(`/api/homepage/featuredListArticle?locale=${locale}`)
-//     return result.data
-//   })
-//
-//
-//
-//   const {data: lastPublishedArticles} = useSWR('/api/lastArticles', async ()=>{
-//     const result = await axios.get(`/api/homepage/lastPublishedArticles?locale=${locale}`)
-//     // await wait(2000)
-//     return result.data
-//
-//   })
-//
-//   return {
-//     featuredArticles,
-//     lastPublishedArticles
-//
-//   }
-// }
-//
-// export const useLastPublishedArticles = async ({locale}) => {
-//
-//   const {data: LastPublishedArticles} = useSWR('articles', async ()=>{
-//
-//     const result = await axios.get(`/api/homepage/lastPublishedArticles?locale=${locale}`)
-//     return result
-//   })
-//
-//   return {
-//     LastPublishedArticles
-//   }
-//
-// }
-//
 export const useArticle = ({article, locale, category})=>{
 
-  // const {data: id} = useSWR('/api/article', async ()=>{
-  //
-  //   const result = await axios.get(`/api/public/homepage/articles/${article}`)
-  //   await wait(2000)
-  //   return result.data
-  // })
 
   const {data: doc} = useSWR('/api/article', async ()=>{
     const response = await fetch(`/${locale}/articles/${category}/${article}/api`)
@@ -119,11 +84,4 @@ export const useArticle = ({article, locale, category})=>{
   return {
     articleData:  doc
   }
-}
-// export const wait = async (ms)=> {
-//   return new Promise(resolve => setTimeout(resolve, ms));
-// }
-
-const wait = async (ms)=> {
-  return new Promise(resolve => setTimeout(resolve, ms))
 }
