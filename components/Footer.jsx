@@ -1,24 +1,30 @@
 import Image from "next/image";
 import logo from "@/public/logo.svg";
+import {FacebookIcon} from "react-share";
+import {faFacebook, faTelegram} from "@fortawesome/free-brands-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 export const Footer = ()=> {
 
-  return <footer className="bg-black text-gray-400">
+  return <footer className="bg-gray-300 text-gray-600">
     {/*Footer content*/}
     <div id="footer-content" className="relative pt-8 xl:pt-16 pb-6 xl:pb-12">
       <div className="xl:container mx-auto px-3 sm:px-4 xl:px-2 overflow-hidden">
         <div className="flex flex-wrap flex-row lg:justify-between -mx-3">
           <div className="flex-shrink max-w-full w-full lg:w-2/5 px-3 lg:pr-16">
             <div className="flex items-center gap-4 mb-2">
-              <span className="text-3xl leading-normal mb-2 font-bold text-gray-100 mt-2 font-title">Deschide.MD</span>
+              <span className="text-3xl leading-normal mb-2 font-bold text-gray-700 mt-2 font-title">Deschide.MD</span>
               <Image src={logo} alt="LOGO" className="w-10"/>
             </div>
-            <p className="font-text">Portal de stiri din Republica Moldova.</p>
+            <p className="font-text mb-6">Portal de stiri din Republica Moldova.</p>
+            <p className="text-sm font-text">Str. Alexandr Pușkin 20, ap.5 <br/>
+              Chisinau, MD-2012, Republica Moldova <br/>
+              +373 60 103 111, <br/>contact[at]deschide.md</p>
             <ul className="space-x-3 mt-6 mb-6 Lg:mb-0">
               {/* facebook */}
               <li className="inline-block">
                 <a target="_blank" className="hover:text-gray-100" rel="noopener noreferrer"
-                   href="https://facebook.com" title="Facebook">
+                   href="https://www.facebook.com/DeschideStirea/" title="Facebook">
                   {/* <i class="fab fa-facebook fa-2x"></i> */}
                   <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" viewBox="0 0 512 512">
                     <path fill="currentColor"
@@ -29,7 +35,7 @@ export const Footer = ()=> {
               {/* twitter */}
               <li className="inline-block">
                 <a target="_blank" className="hover:text-gray-100" rel="noopener noreferrer"
-                   href="https://twitter.com" title="Twitter">
+                   href="https://twitter.com/DeschideMD" title="Twitter">
                   {/*<i class="fab fa-twitter fa-2x"></i>*/}
                   <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" viewBox="0 0 512 512">
                     <path fill="currentColor"
@@ -40,7 +46,7 @@ export const Footer = ()=> {
               {/*youtube*/}
               <li className="inline-block">
                 <a target="_blank" className="hover:text-gray-100" rel="noopener noreferrer"
-                   href="https://youtube.com" title="Youtube">
+                   href="https://www.youtube.com/channel/UCA-r1a0N9nFTNw2XlCTdt4Q" title="Youtube">
                   {/* <i class="fab fa-youtube fa-2x"></i> */}
                   <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" viewBox="0 0 512 512">
                     <path fill="currentColor"
@@ -50,62 +56,37 @@ export const Footer = ()=> {
               </li>
               {/*instagram*/}
               <li className="inline-block">
-                <a target="_blank" className="hover:text-gray-100" rel="noopener noreferrer"
-                   href="https://instagram.com" title="Instagram">
+                <a target="_blank" className="hover:text-gray-100 text-4xl" rel="noopener noreferrer"
+                   href="https://t.me/deschide_md" title="Instagram">
                   {/* <i class="fab fa-instagram fa-2x"></i> */}
-                  <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" viewBox="0 0 512 512">
-                    <path fill="currentColor"
-                          d="M349.33,69.33a93.62,93.62,0,0,1,93.34,93.34V349.33a93.62,93.62,0,0,1-93.34,93.34H162.67a93.62,93.62,0,0,1-93.34-93.34V162.67a93.62,93.62,0,0,1,93.34-93.34H349.33m0-37.33H162.67C90.8,32,32,90.8,32,162.67V349.33C32,421.2,90.8,480,162.67,480H349.33C421.2,480,480,421.2,480,349.33V162.67C480,90.8,421.2,32,349.33,32Z"></path>
-                    <path fill="currentColor"
-                          d="M377.33,162.67a28,28,0,1,1,28-28A27.94,27.94,0,0,1,377.33,162.67Z"></path>
-                    <path fill="currentColor"
-                          d="M256,181.33A74.67,74.67,0,1,1,181.33,256,74.75,74.75,0,0,1,256,181.33M256,144A112,112,0,1,0,368,256,112,112,0,0,0,256,144Z"></path>
-                  </svg>
+                  <FontAwesomeIcon icon={faTelegram} />
                 </a>
               </li>
               {/* end instagram */}
             </ul>
           </div>
-          <div className="flex-shrink max-w-full w-full lg:w-3/5 px-3">
-            <div className="flex flex-wrap flex-row">
-              {/*<div className="flex-shrink max-w-full w-1/2 md:w-1/4 mb-6 lg:mb-0">*/}
-              {/*  <h4 className="text-base leading-normal mb-3 uppercase text-gray-100">Product</h4>*/}
-              {/*  <ul>*/}
-              {/*    <li className="py-1 hover:text-white"><a href="#">Landing</a></li>*/}
-              {/*    <li className="py-1 hover:text-white"><a href="#">Pages</a></li>*/}
-              {/*    <li className="py-1 hover:text-white"><a href="#">Sections</a></li>*/}
-              {/*    <li className="py-1 hover:text-white"><a href="#">Sign Up</a></li>*/}
-              {/*    <li className="py-1 hover:text-white"><a href="#">Login</a></li>*/}
-              {/*  </ul>*/}
-              {/*</div>*/}
-              {/*<div className="flex-shrink max-w-full w-1/2 md:w-1/4 mb-6 lg:mb-0">*/}
-              {/*  <h4 className="text-base leading-normal mb-3 uppercase text-gray-100">Support</h4>*/}
-              {/*  <ul>*/}
-              {/*    <li className="py-1 hover:text-white"><a href="#">Documentation</a></li>*/}
-              {/*    <li className="py-1 hover:text-white"><a href="#">Changelog</a></li>*/}
-              {/*    <li className="py-1 hover:text-white"><a href="#">Tools</a></li>*/}
-              {/*    <li className="py-1 hover:text-white"><a href="#">Icons</a></li>*/}
-              {/*  </ul>*/}
-              {/*</div>*/}
-              {/*<div className="flex-shrink max-w-full w-1/2 md:w-1/4 mb-6 lg:mb-0">*/}
-              {/*  <h4 className="text-base leading-normal mb-3 uppercase text-gray-100">Includes</h4>*/}
-              {/*  <ul>*/}
-              {/*    <li className="py-1 hover:text-white"><a href="#">Utilities</a></li>*/}
-              {/*    <li className="py-1 hover:text-white"><a href="#">Components</a></li>*/}
-              {/*    <li className="py-1 hover:text-white"><a href="#">Example code</a></li>*/}
-              {/*    <li className="py-1 hover:text-white"><a href="#">Updates</a></li>*/}
-              {/*  </ul>*/}
-              {/*</div>*/}
-              {/*<div className="flex-shrink max-w-full w-1/2 md:w-1/4 mb-6 lg:mb-0">*/}
-              {/*  <h4 className="text-base leading-normal mb-3 uppercase text-gray-100">Legal</h4>*/}
-              {/*  <ul>*/}
-              {/*    <li className="py-1 hover:text-white hover:text-white"><a href="#">Privacy Policy</a></li>*/}
-              {/*    <li className="py-1 hover:text-white"><a href="#">Terms of Use</a></li>*/}
-              {/*    <li className="py-1 hover:text-white"><a href="#">License</a></li>*/}
-              {/*    <li className="py-1 hover:text-white"><a href="#">GDPR</a></li>*/}
-              {/*  </ul>*/}
-              {/*</div>*/}
-            </div>
+        </div>
+        <div className="flex mx-auto items-center">
+          <div className="mx-2">
+            <img src="/img/footer/lu.png" alt="lu"  width={100}/>
+          </div>
+          <div className="mx-2">
+            <img src="/img/footer/ccpe.png" alt=""  width={100}/>
+          </div>
+          <div className="mx-2">
+            <img src="/img/footer/ce.png" alt=""  width={100}/>
+          </div>
+          <div className="mx-2">
+            <img src="/img/footer/cl.png" alt=""  width={100}/>
+          </div>
+          <div className="mx-2">
+            <img src="/img/footer/rnews.png" alt=""  width={100}/>
+          </div>
+          <div className="mx-2">
+            <img src="/img/footer/tr.png" alt="" width={100} />
+          </div>
+          <div className="mx-2">
+            <img src="/img/footer/unirea.png" alt=""  width={100}/>
           </div>
         </div>
       </div>

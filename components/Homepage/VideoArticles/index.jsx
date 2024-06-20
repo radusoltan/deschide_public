@@ -12,7 +12,7 @@ export const VideoArticles = ()=> {
   const {videos} = useHomePageData({locale})
 
   return <div className="bg-gray-50 py-6">
-    <div className="max-w-7xl mx-auto px-3 sm:px-4 xl:px-2">
+    <div className="xl:container mx-auto px-3 sm:px-4 xl:px-2">
       <div className="flex flex-row flex-wrap">
 
         <div className="flex-shrink max-w-full w-full md:w-1/2 lg:w-1/3 px-6">
