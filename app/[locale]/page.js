@@ -203,7 +203,6 @@ export default async function Page({ params: {locale}, }) {
     <LiveArticle />
     <SpecialArticles />
     <FeaturedArticlesList />
-
     <div className="flex justify-center items-center py-6">
       <a href="http://drrm.gov.ro/w/">
         <Image
@@ -215,7 +214,6 @@ export default async function Page({ params: {locale}, }) {
       </a>
 
     </div>
-
     <div className="bg-white py-6">
       <div className="xl:container mx-auto px-3 sm:px-4 xl:px-2">
         <div className="flex flex-row flex-wrap">
@@ -238,9 +236,5 @@ export default async function Page({ params: {locale}, }) {
     </div>
     <SlideNews />
     <VideoArticles />
-
-
-
-
   </>
 }
