@@ -15,7 +15,6 @@ export const FeaturedArticlesList = () => {
   const {locale} = useParams()
   const {featuredArticles, featuredArticlesLoading} = useArticles({locale})
   const [articles, setArticles] = useState(null);
-  const { width } = useWindowSize();
 
   useEffect(() => {
     if (featuredArticles){

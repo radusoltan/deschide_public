@@ -4,13 +4,8 @@ import {
   Disclosure,
 } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-
-import logo from "@/public/logo.svg"
-
 import {useCategories} from "@/hooks/categories";
 import {useParams} from "next/navigation";
-import Image from "next/image";
-import Link from "next/link";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')

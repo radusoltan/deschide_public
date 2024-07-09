@@ -1,9 +1,8 @@
-import {Lora, Roboto_Slab, PT_Serif, League_Spartan, Poppins} from "next/font/google";
+import {PT_Serif, League_Spartan, Poppins} from "next/font/google";
 import "../globals.css";
 import { dir } from 'i18next'
 import {Footer} from "@/components/Footer";
 import {Header} from "@/components/Header";
-import {NewHeader} from "@/components/Nav";
 
 const lora = Poppins({
   subsets: ["latin"],
@@ -20,12 +19,6 @@ const titleCategory = PT_Serif({
   subsets: ['latin'],
   weight: ['400','700'],
   variable: "--title-category",
-})
-
-const LeagueSpartan = League_Spartan({
-  subsets: ['latin'],
-  weight: ['400','500','600','700'],
-  variable: "--title-league-spartan",
 })
 
 export const metadata = {
