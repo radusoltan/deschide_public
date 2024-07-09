@@ -53,10 +53,8 @@ export const FeaturedArticlesList = () => {
         <div className="flex-shrink max-w-full w-full lg:w-1/2">
           <div className="box-one flex flex-row flex-wrap">{
             articles?.map((article, index) =>
-                index > 0 && index <= 8 && width < 768 ?
-                    <ArticleItem key={article._id} article={article} locale={locale}/> :
-                    article && index > 0 && index <= 4 && width > 768 ?
-                        <ArticleItem key={article._id} article={article} locale={locale}/> : ''
+                index > 0 && index <= 9 && <ArticleItem key={article._id} article={article} locale={locale}/>
+
             )
           }</div>
         </div>
