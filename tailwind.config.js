@@ -16,6 +16,8 @@ module.exports = {
         "title": "var(--title-font)",
         "text": "var(--text-font)",
         'category': 'var(--title-category)',
+        'headings': 'var(--headings-font)',
+        'new': 'var(--title-league-spartan)'
       }
     },
   },

@@ -1,15 +1,15 @@
-import {Lora, Roboto_Slab, PT_Serif} from "next/font/google";
+import {PT_Serif, League_Spartan, Poppins} from "next/font/google";
 import "../globals.css";
 import { dir } from 'i18next'
 import {Footer} from "@/components/Footer";
 import {Header} from "@/components/Header";
 
-const lora = Lora({
+const lora = Poppins({
   subsets: ["latin"],
   weight: ['400','500','600','700'],
   variable: "--text-font",
 });
-const titleFont = Roboto_Slab({
+const titleFont = League_Spartan({
   subsets: ['latin'],
   weight: ['400','500','600','700'],
   variable: "--title-font",

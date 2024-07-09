@@ -4,13 +4,8 @@ import {
   Disclosure,
 } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-
-import logo from "@/public/logo.svg"
-
 import {useCategories} from "@/hooks/categories";
 import {useParams} from "next/navigation";
-import Image from "next/image";
-import Link from "next/link";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -51,13 +46,6 @@ export const Navigation = ({locale})=>{
                 </Disclosure.Button>
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                <div className="flex flex-shrink-0 items-center">
-                  <Link href={`/${locale}`}>
-                    <Image priority src={logo} alt="Deschide.MD" className="h-8 w-auto" width={50}/>
-                  </Link>
-
-
-                </div>
                 <div className="hidden sm:ml-2 sm:block">
                   <div className="flex sm:space-x-2 flex-wrap">
                     {categories?.map((item) => (
@@ -66,7 +54,7 @@ export const Navigation = ({locale})=>{
                             href={item.href}
                             className={classNames(
                                 item.current ? 'bg-gray-900 text-white' : 'text-gray-700 hover:bg-gray-700 hover:text-white',
-                                'rounded-md px-2 py-2 text-sm font-title font-bold'
+                                'rounded-md px-2 py-2 text-md font-new font-bold'
                             )}
                             aria-current={item.current ? 'page' : undefined}
                         >
