@@ -2,6 +2,7 @@
 import {useArticles} from "@/hooks/articles";
 import {useParams} from "next/navigation";
 import moment from "moment/moment";
+import 'moment/locale/ro'
 
 export const LiveArticle = ()=>{
   const {locale} = useParams()
@@ -17,7 +18,7 @@ export const LiveArticle = ()=>{
   return liveArticle && liveArticle?.length > 0 && <div className="bg-white py-6">
     <div className="max-w-7xl mx-auto px-3 sm:px-4 xl:px-2">
       <div className="flex flex-row flex-wrap">
-        <div className="flex-shrink max-w-full w-full md:w-1/2 px-6 " dangerouslySetInnerHTML={{
+        <div className="flex-shrink md:w-1/2 px-6 " dangerouslySetInnerHTML={{
           __html: articleTranslated.embed
         }} />
         <div className="flex-shrink max-w-full w-full md:w-1/2 px-6">

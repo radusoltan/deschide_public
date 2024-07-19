@@ -3,7 +3,6 @@ import {useParams} from "next/navigation";
 import {useArticles} from "@/hooks/articles";
 import { motion } from "framer-motion";
 import {useEffect, useState} from "react";
-import useWindowSize from "@/hooks/useWindowSize";
 import {First} from "@/components/Homepage/FeaturedArticlesList/First";
 import {shuffleArray} from "@/lib/helpers";
 import '@splidejs/react-splide/css';

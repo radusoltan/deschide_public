@@ -4,6 +4,7 @@ import {useCategoryArticles} from "@/hooks/categories";
 import useWindowSize from "@/hooks/useWindowSize";
 import Image from "next/image";
 import ads_728 from "@/public/img/ads/ads_728.jpg";
+import ads_250 from "@/public/img/ads/250.jpg"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCalendarDays, faEye, faUser} from "@fortawesome/free-solid-svg-icons";
 import {faInstagram, faSquareFacebook, faSquareTwitter, faTelegram} from "@fortawesome/free-brands-svg-icons";
@@ -201,7 +202,7 @@ export const Article = () => {
               <div className="w-full text-center">
                 <a className="uppercase" href="#">Advertisement</a>
                 <a href="#">
-                  <img className="mx-auto" src="/img/ads/250.jpg" alt="advertisement area"/>
+                  <Image className="mx-auto" src={ads_250} alt="advertisement area"/>
                 </a>
               </div>
             </div>

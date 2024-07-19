@@ -22,7 +22,7 @@ export const Navigation = ({locale})=>{
 
     return category.in_menu && ({
       id: Number(category.id),
-      name: category.title,
+      name: category.title.toUpperCase(),
       href: `/${locale}/articles/${category.slug}`,
       current: params.category && params.category === category.slug,
     })
@@ -31,7 +31,7 @@ export const Navigation = ({locale})=>{
   return <Disclosure as="nav" className="bg-white">
     {({ open }) => (
         <>
-          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8  sticky top-0">
+          <div className="mx-auto px-2 sm:px-6 lg:px-8  sticky top-0">
             <div className="relative flex h-16 items-center justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
@@ -54,7 +54,7 @@ export const Navigation = ({locale})=>{
                             href={item.href}
                             className={classNames(
                                 item.current ? 'bg-gray-900 text-white' : 'text-gray-700 hover:bg-gray-700 hover:text-white',
-                                'rounded-md px-2 py-2 text-md font-new font-bold'
+                                'rounded-md px-2 py-2 font-new font-bold'
                             )}
                             aria-current={item.current ? 'page' : undefined}
                         >
