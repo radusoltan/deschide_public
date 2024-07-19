@@ -10,7 +10,7 @@ const lora = Poppins({
   variable: "--text-font",
 });
 const titleFont = League_Spartan({
-  subsets: ['latin'],
+  subsets: ['latin', 'latin-ext'],
   weight: ['400','500','600','700'],
   variable: "--title-font",
 })
@@ -34,13 +34,7 @@ export const metadata = {
       //   url: 'https://nextjs.org/og.png', // Must be an absolute URL
       //   width: 800,
       //   height: 600,
-      // },
-      // {
-      //   url: 'https://nextjs.org/og-alt.png', // Must be an absolute URL
-      //   width: 1800,
-      //   height: 1600,
-      //   alt: 'My custom alt',
-      // },
+      // },,
     ],
     locale: 'ro_RO',
     type: 'website',

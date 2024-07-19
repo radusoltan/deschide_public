@@ -9,7 +9,7 @@ import Link from "next/link";
 
 export const Header = ({locale})=>{
 
-  return <header className="xl:container mx-auto px-4 sm:px-4 xl:px-2">
+  return <header className=" xl:container mx-auto px-4 sm:px-4 xl:px-2">
     <div className="flex items-center last:mr-0 bg-white h-16">
 
       <div className="flex mx-auto w-2/3">

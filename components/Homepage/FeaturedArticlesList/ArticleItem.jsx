@@ -4,26 +4,28 @@ import Image from "next/image";
 import useWindowSize from "@/hooks/useWindowSize";
 import moment from "moment/moment";
 
+
 export const ArticleItem = ({article, locale}) => {
+  moment.locale(locale)
   const { width } = useWindowSize();
 
   const { category, article_id, translations, images } = article?._source
 
   const articleLink = `/${locale}/articles/${category.translations.find(t => t.locale === locale).slug}/${article_id}/${translations?.find(t=>t.locale===locale)?.slug}`
 
-  const imageSrc = width < 768 ?
+  const imageSrc = width < 768 && images ?
       process.env.NEXT_PUBLIC_BACKEND_URL + '/' +
-      images.find(i => i.is_main)?.thumbnails.find(th => th.rendition_id === 2).path :
+      images?.find(i => i.is_main)?.thumbnails.find(th => th.rendition_id === 2).path :
       process.env.NEXT_PUBLIC_BACKEND_URL + '/' +
-      images.find(i => i.is_main)?.thumbnails.find(th => th.rendition_id === 1).path
+      images?.find(i => i.is_main)?.thumbnails.find(th => th.rendition_id === 1).path
 
-  const imageWidth = width < 768 ?
-      images.find(i => i.is_main)?.thumbnails.find(th => th.rendition_id === 2).width :
-      images.find(i => i.is_main)?.thumbnails.find(th => th.rendition_id === 1).width
+  const imageWidth = width < 768 && images ?
+      images?.find(i => i.is_main)?.thumbnails.find(th => th.rendition_id === 2).width :
+      images?.find(i => i.is_main)?.thumbnails.find(th => th.rendition_id === 1).width
 
-  const imageHeight = width < 768 ?
-      images.find(i => i.is_main)?.thumbnails.find(th => th.rendition_id === 2).height :
-      images.find(i => i.is_main)?.thumbnails.find(th => th.rendition_id === 2).height
+  const imageHeight = width < 768 && images ?
+      images?.find(i => i.is_main)?.thumbnails.find(th => th.rendition_id === 2).height :
+      images?.find(i => i.is_main)?.thumbnails.find(th => th.rendition_id === 2).height
 
   const articleImage = images.length > 0 && <Image
       src={imageSrc}
@@ -50,7 +52,7 @@ export const ArticleItem = ({article, locale}) => {
     <div className="relative">
       <Link
           href={articleLink}>
-        {articleImage}
+        {images && articleImage}
       </Link>
       <div
           className="absolute px-4 pt-7 pb-4 bottom-0 w-full bg-gradient-to-t from-slate-900">

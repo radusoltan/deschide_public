@@ -1,5 +1,6 @@
 import Link from "next/link";
 import moment from "moment";
+import 'moment/locale/ro'
 import {useParams} from "next/navigation";
 
 export const ArticleItem = ({article}) => {
@@ -10,7 +11,7 @@ export const ArticleItem = ({article}) => {
 
   const {title, published_at, slug} = translations?.find(t => t.locale === locale);
 
-  const date = moment(published_at).format("MM Do YYYY, h:mm")
+  const date = moment(published_at).format("LL")
 
 
   return <div className="pb-5">

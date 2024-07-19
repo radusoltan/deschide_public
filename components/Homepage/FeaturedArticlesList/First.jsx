@@ -3,6 +3,7 @@ import Image from "next/image";
 import useWindowSize from "@/hooks/useWindowSize";
 import {useParams} from "next/navigation";
 import moment from "moment";
+import 'moment/locale/ro'
 
 export const First = ({article}) => {
   const {locale} = useParams()
@@ -14,13 +15,13 @@ export const First = ({article}) => {
 
   const articleLink = `/${locale}/articles/${category?.translations.find(t => t.locale === locale).slug}/${article_id}/${slug}`
 
-  const image = images.find(i=>i.is_main)
+  const image = images?.find(i=>i.is_main)
 
   const renditionId = width > 768 ? 1 : 2
 
-  const thumbnail = image.thumbnails.find(t=>t.rendition_id===renditionId)
+  const thumbnail = image?.thumbnails.find(t=>t.rendition_id===renditionId)
 
-  const articleImage = <Image
+  const articleImage = thumbnail && <Image
       src={process.env.NEXT_PUBLIC_BACKEND_URL + '/' + thumbnail.path}
       width={thumbnail.width}
       height={thumbnail.height}

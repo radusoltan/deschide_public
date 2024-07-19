@@ -1,11 +1,14 @@
 import {useParams} from "next/navigation";
 import Link from "next/link";
 import moment from "moment";
+
 import {ArticleImage} from "@/components/Homepage/LatestNews/ArticleImage";
 
 export const ArticleItem = ({ article }) => {
 
   const {locale} = useParams()
+
+  moment.locale(locale)
 
   const {article_id, images, translations, category} = article;
 
@@ -13,7 +16,8 @@ export const ArticleItem = ({ article }) => {
 
   const {title, published_at, slug} = translations.find(t=>t.locale===locale)
 
-  const date = moment(published_at).format("MM Do YYYY, h:mm")
+  const date = moment(published_at).format("LLL")
+  // const date = moment(published_at).format("llll").fromNow()
 
   return <div
       className=" flex-shrink max-w-full w-full md:w-1/2 lg:w-full xl:w-full px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
