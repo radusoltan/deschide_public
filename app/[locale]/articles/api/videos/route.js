@@ -9,13 +9,13 @@ export const GET = async (req, {params:{locale}}) => {
       query: {
         bool: {
           must: [
-            { match: { "category.id": 11 } },
+            { match: { "is_video": true } },
             { match: { "translations.locale": locale } },
             { match: { "translations.status": 'P' } }
           ]
         }
       },
-      size: 9,
+      size: 10,
       sort: [
         { "translations.published_at": {order: "desc", "format": "strict_date_optional_time_nanos"} }
       ]
