@@ -43,13 +43,14 @@ export const VideoArticles = ()=> {
                     <div className="absolute left-14 bottom-36 text-4xl opacity-85 text-red-600">
                       <FontAwesomeIcon icon={faYoutube}/>
                     </div>
-                    <div className="font-title text-xl px-5 font-bold">
+                    <div className="font-title text-xl mt-5 px-5 font-bold">
                       {video._source.translations.find(t => t.locale === locale).title}
                     </div>
-                    <div className="text-gray-500 text-sm mt-7 font-text">
+                    <div className="text-gray-500 px-5 text-sm mt-5 font-text">
                       {moment(video._source.translations.find(t => t.locale === locale)?.published_at).format('LL')}, <span
-                        className="font-light">views: {video._source.visits}</span>
+                        className="font-light text-md">views: {video._source.visits}</span>
                     </div>
+
                   </Link>
                 </div>
               </div>
