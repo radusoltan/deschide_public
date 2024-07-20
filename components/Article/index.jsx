@@ -23,6 +23,9 @@ export const Article = () => {
   const { width } = useWindowSize();
 
   const mainImage = articleData?.images?.find(i=>i.is_main)
+
+  console.log(mainImage)
+
   const thumbnail = width < 768 ?
       mainImage?.thumbnails?.find(t=>t.rendition_id===2) :
       mainImage?.thumbnails?.find(t=>t.rendition_id===1)
@@ -56,7 +59,78 @@ export const Article = () => {
                   <span className="inline-block h-5 border-l-3 border-red-600 mr-2"></span>
                   {articleData?.translations.find(t => t.locale === locale)?.title}
                 </h2>
+                <div
+                    className="relative flex flex-row items-center justify-between overflow-hidden bg-gray-100 dark:bg-gray-900 dark:bg-opacity-20 mt-12 mb-2 px-6 py-2">
+                  <div className="my-4 text-sm">
+
+                    <span className="mr-2 md:mr-4 font-text">
+                      {
+                          articleData?.authors.length > 0 && <><FontAwesomeIcon
+                              icon={faUser}/> {articleData?.authors.map((author, index) => <span className="font-semibold"
+                                                                                                 key={index}>{author.full_name}, </span>)}
+                          </>
+                      }
+
+
+                      </span>
+
+                    <time className="mr-2 md:mr-4 font-text"
+                          dateTime={moment(articleData?.translations.find(t => t.locale === locale)?.published_at).format('DD-MM-YYYY')}>
+                      <FontAwesomeIcon icon={faCalendarDays}/> {
+                      moment(articleData?.translations.find(t => t.locale === locale)?.published_at).format('DD-MM-YYYY')
+                    }
+                    </time>
+                    {/*view*/}
+                    <span className="mr-2 md:mr-4 font-text">
+
+                      <FontAwesomeIcon icon={faEye}/> {articleData?.visits} x view
+                      </span>
+
+                  </div>
+
+                  <div className=" lg:block">
+                    <ul className="space-x-3">
+
+                      <li className="inline-block">
+                        <a target="_blank" className="hover:text-red-700 text-2xl" href="#" title="Share to Facebook">
+                          <FacebookShareButton className="hover:text-red-700 text-2xl"
+                                               url={process.env.NEXT_PUBLIC_APP_URL + `/${locale}/articles/${category}/${article}/${slug}`}>
+                            <FontAwesomeIcon icon={faSquareFacebook}/>
+                          </FacebookShareButton>
+
+                        </a>
+                      </li>
+
+                      <li className="inline-block">
+                        <a target="_blank" className="hover:text-red-700 text-2xl" href="#" title="Share to Twitter">
+
+                          <FontAwesomeIcon icon={faSquareTwitter}/>
+                        </a>
+                      </li>
+
+                      <li className="inline-block">
+                        <a target="_blank" className="hover:text-red-700 text-2xl" href="#"
+                           title="Share to Instagram">
+                          {/* <i class="fab fa-instagram fa-2x"></i> */}
+
+                          <FontAwesomeIcon icon={faInstagram}/>
+                        </a>
+                      </li>
+
+                      <li className="inline-block">
+                        <a target="_blank" className="hover:text-red-700 text-2xl" href="#"
+                           title="Share to Instagram">
+                          {/* <i class="fab fa-instagram fa-2x"></i> */}
+
+                          <FontAwesomeIcon icon={faTelegram}/>
+                        </a>
+                      </li>
+
+                    </ul>
+                  </div>
+                </div>
               </div>
+
               <div className="flex flex-row flex-wrap -mx-3">
                 <div className="max-w-full w-full px-4">
                   {/* Article Content */}
@@ -64,7 +138,7 @@ export const Article = () => {
                     <p className="mb-5"
                        dangerouslySetInnerHTML={{__html: articleData?.translations.find(t => t.locale === locale)?.lead}}/>
                     <figure className="text-center mb-6">
-                    {
+                      {
                           thumbnail && <>
                             <Image
                                 src={process.env.NEXT_PUBLIC_BACKEND_URL + '/' + thumbnail?.path}
@@ -81,75 +155,7 @@ export const Article = () => {
                     <div className="mb-5 article-body"
                          dangerouslySetInnerHTML={{__html: articleData?.translations.find(t => t.locale === locale)?.body}}/>
                   </div>
-                  <div
-                      className="relative flex flex-row items-center justify-between overflow-hidden bg-gray-100 dark:bg-gray-900 dark:bg-opacity-20 mt-12 mb-2 px-6 py-2">
-                    <div className="my-4 text-sm">
 
-                    <span className="mr-2 md:mr-4 font-text">
-                      {
-                          articleData?.authors.length > 0 && <><FontAwesomeIcon
-                              icon={faUser}/>  {articleData?.authors.map((author, index) => <span className="font-semibold"
-                                                                                                 key={index}>{author.full_name}, </span>)}
-                          </>
-                      }
-
-
-                      </span>
-
-                      <time className="mr-2 md:mr-4 font-text" dateTime={moment(articleData?.translations.find(t=>t.locale===locale)?.published_at).format('DD-MM-YYYY')}>
-                        <FontAwesomeIcon icon={faCalendarDays}/> {
-                          moment(articleData?.translations.find(t=>t.locale===locale)?.published_at).format('DD-MM-YYYY')
-                      }
-                      </time>
-                      {/*view*/}
-                      <span className="mr-2 md:mr-4 font-text">
-
-                      <FontAwesomeIcon icon={faEye}/> {articleData?.visits} x view
-                      </span>
-
-                    </div>
-
-                    <div className=" lg:block">
-                      <ul className="space-x-3">
-
-                        <li className="inline-block">
-                          <a target="_blank" className="hover:text-red-700 text-2xl" href="#" title="Share to Facebook">
-                            <FacebookShareButton className="hover:text-red-700 text-2xl"
-                                                 url={process.env.NEXT_PUBLIC_APP_URL + `/${locale}/articles/${category}/${article}/${slug}`}>
-                              <FontAwesomeIcon icon={faSquareFacebook}/>
-                            </FacebookShareButton>
-
-                          </a>
-                        </li>
-
-                        <li className="inline-block">
-                          <a target="_blank" className="hover:text-red-700 text-2xl" href="#" title="Share to Twitter">
-
-                            <FontAwesomeIcon icon={faSquareTwitter}/>
-                          </a>
-                        </li>
-
-                        <li className="inline-block">
-                          <a target="_blank" className="hover:text-red-700 text-2xl" href="#"
-                             title="Share to Instagram">
-                            {/* <i class="fab fa-instagram fa-2x"></i> */}
-
-                            <FontAwesomeIcon icon={faInstagram}/>
-                          </a>
-                        </li>
-
-                        <li className="inline-block">
-                          <a target="_blank" className="hover:text-red-700 text-2xl" href="#"
-                             title="Share to Instagram">
-                            {/* <i class="fab fa-instagram fa-2x"></i> */}
-
-                            <FontAwesomeIcon icon={faTelegram}/>
-                          </a>
-                        </li>
-
-                      </ul>
-                    </div>
-                  </div>
                 </div>
 
               </div>
