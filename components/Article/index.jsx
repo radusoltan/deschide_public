@@ -144,6 +144,17 @@ export const Article = () => {
                 </div>
               </div>
             </article>
+            <div className="flex justify-center items-center py-6">
+              <a href="http://drrm.gov.ro/w/">
+                <Image
+                    src={gov}
+                    width={1100}
+                    height={130}
+                    alt="Guvern"
+                />
+              </a>
+
+            </div>
 
           </div>
           <div className="flex-shrink max-w-full w-full lg:w-1/3 lg:pl-8 lg:pt-14 lg:pb-8 order-last lg:order-last">
