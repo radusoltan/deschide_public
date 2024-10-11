@@ -27,6 +27,7 @@ export const Article = () => {
       mainImage?.thumbnails?.find(t=>t.rendition_id===2) :
       mainImage?.thumbnails?.find(t=>t.rendition_id===1)
 
+  console.log(thumbnail)
 
 
   return articleData?.is_video ? <>

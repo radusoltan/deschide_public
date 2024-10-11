@@ -10,14 +10,11 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 export const LatestNews = () => {
 const {locale} = useParams()
 const {lastArticles, lastArticlesLoading} = useArticles({locale})
-  // const articlesToDisplay = lastArticles.lastPublishedArticles;
 
-  if (lastArticlesLoading) return <>LOADING ...</>
 
   return <div className="flex-shrink max-w-full w-full lg:w-1/3 lg:pr-8 lg:pb-10 order-first">
     <div className="w-full py-3">
       <h2 className="text-2xl font-bold font-category mb-6">
-        {/*<span className="inline-block h-5 border-l-4 border-red-600 mr-2"></span>*/}
         {
 
         locale === "ro" ? <span className="bg-red-600 p-3 rounded text-white">Ultimele Știri</span> :
@@ -45,13 +42,10 @@ const {lastArticles, lastArticlesLoading} = useArticles({locale})
 
           </div>
           {
-            lastArticles?.lastPublishedArticles.slice(5).map((article, index) => <ArticleItem key={index + 5}
-                                                                                              article={article._source}/>)
+            lastArticles?.lastPublishedArticles.slice(5).map((article, index) => <ArticleItem key={index + 5} article={article._source}/>)
           }
           <span className="w-full mt-6"/>
-          <Link href={`/${locale}/articles/all?page=1&limit=15`}
-                className="w-full text-center font-light text-gray-500 p-5 hover:bg-gray-300 hover:text-gray-500 mx-auto mb-6">More
-            News</Link>
+          <Link href={`/${locale}/articles/all?page=1&limit=15`} className="w-full text-center font-light text-gray-500 p-5 hover:bg-gray-300 hover:text-gray-500 mx-auto mb-6">More News</Link>
         </div>
       </div>
     </div>

@@ -9,8 +9,6 @@ export const LiveArticle = ()=>{
 
   const {liveArticle, liveArticleLoading} = useArticles({locale})
 
-  if (liveArticleLoading) return <>LOADING ...</>
-
   const article = liveArticle && liveArticle[0]
 
   const articleTranslated = article?._source.translations.find(t=>t.locale===locale)

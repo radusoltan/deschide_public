@@ -18,7 +18,7 @@ export async function getPoliticalArticles({locale}){
         bool: {
           must: [
             { match: { "translations.locale": locale} },
-            { match: { "category.translations.slug": 'politic' } },
+            { match: { "category.id": 1 } },
             { match: { "translations.status": 'P' } }
           ]
         }
@@ -64,7 +64,7 @@ export async function getSocialArticles({locale}){
           must: [
             { match: { "translations.locale": locale} },
             { match: { "translations.status": 'P' } },
-            { match: { "category.translations.slug": 'social' } }
+            { match: { "category.id": 2 } }
           ]
         }
       },
@@ -108,7 +108,7 @@ export async function getFinancialArticles({locale}){
         bool: {
           must: [
             { match: { "translations.locale": locale} },
-            { match: { "category.translations.slug": 'economic' } },
+            { match: { "category.id": 3 } },
             { match: { "translations.status": 'P' } }
           ]
         }
@@ -153,7 +153,7 @@ export async function getInternationalArticles({locale}){
         bool: {
           must: [
             { match: { "translations.locale": locale} },
-            { match: { "category.translations.slug": 'externe' } },
+            { match: { "category.id": 4 } },
             { match: { "translations.status": 'P' } }
           ]
         }
@@ -207,8 +207,8 @@ export default async function Page({ params: {locale}, }) {
       <a href="http://drrm.gov.ro/w/">
         <Image
             src={gov}
-            width={1100}
-            height={130}
+            // width={1100}
+            // height={130}
             alt="Guvernul Romaniei"
         />
       </a>

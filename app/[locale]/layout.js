@@ -3,6 +3,8 @@ import "../globals.css";
 import { dir } from 'i18next'
 import {Footer} from "@/components/Footer";
 import {Header} from "@/components/Header";
+import { GoogleTagManager } from '@next/third-parties/google'
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 const lora = Poppins({
   subsets: ["latin"],
@@ -36,15 +38,15 @@ export const metadata = {
       //   height: 600,
       // },,
     ],
-    locale: 'ro_RO',
+    locale: 'ro',
     type: 'website',
   },
   alternates: {
     canonical: '/',
     languages: {
-      'en_US': '/en',
-      'ro_RO': '/ro',
-      'ru_RU': '/ru',
+      'en': '/en',
+      'ro': '/ro',
+      'ru': '/ru',
     },
   },
 };
@@ -54,6 +56,8 @@ export default async function RootLayout({ children, params: { locale } }) {
   return (
     <html lang={locale} dir={dir(locale)}>
     <body className={`${titleFont.variable} ${lora.variable} ${titleCategory.variable}`}>
+    <GoogleTagManager gtmId="GTM-PGQJHFTQ" />
+    <GoogleAnalytics gaId="G-7E5YRG7F5M" />
     <Header locale={locale} />
 
     <main>{children}</main>

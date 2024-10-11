@@ -3,6 +3,8 @@ import { Fragment } from 'react'
 import "flag-icons/css/flag-icons.min.css";
 import {languages} from "@/i18n/settings";
 import {useParams, usePathname, useRouter} from "next/navigation";
+import i18nConfig from "@/i18nConfig";
+import { useTranslation } from 'react-i18next';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -12,16 +14,13 @@ function classNames(...classes) {
 
 export const LanguageSwitcher = ({locale}) => {
   const selectedLanguage = languages.find(language=>language===locale)
-  const pathName = usePathname()
+  const currentPathname = usePathname()
   const router = useRouter()
   const params = useParams()
+  const { i18n } = useTranslation();
+  const currentLocale = i18n.language;
 
-  const redirectedPathName = (locale) => {
-    if (!pathName) return '/'
-    const segments = pathName.split('/')
-    segments[1] = locale
-    return segments.join('/')
-  }
+
   const FlagIcon = ({countryCode}) => {
     if (countryCode === 'en'){
       countryCode = "gb"
@@ -29,10 +28,30 @@ export const LanguageSwitcher = ({locale}) => {
 
     return <span className={`fi fis fiCircle inline-block mr-2 fi-${countryCode}`} />
   }
-  const handleLanguageChange = async (lang) => {
-    // const path = redirectedPathName(lang)
-    router.push(redirectedPathName(lang))
-  }
+  const handleLanguageChange = locale => {
+    const newLocale = locale;
+
+    // set cookie for next-i18n-router
+    const days = 30;
+    const date = new Date();
+    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+    const expires = date.toUTCString();
+    document.cookie = `NEXT_LOCALE=${newLocale};expires=${expires};path=/`;
+
+    // redirect to the new locale path
+    if (
+        currentLocale === i18nConfig.defaultLocale &&
+        !i18nConfig.prefixDefault
+    ) {
+      router.push('/' + newLocale + currentPathname);
+    } else {
+      router.push(
+          currentPathname.replace(`/${currentLocale}`, `/${newLocale}`)
+      );
+    }
+
+    router.refresh();
+  };
   return !params.article && <Menu as="div" className="relative">
     <div>
       <Menu.Button className="flex rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">

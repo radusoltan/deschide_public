@@ -1,8 +1,15 @@
 import Image from "next/image";
 import logo from "@/public/logo.svg";
-import {FacebookIcon} from "react-share";
-import {faFacebook, faTelegram} from "@fortawesome/free-brands-svg-icons";
+import {faTelegram} from "@fortawesome/free-brands-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import lu from "@/public/img/footer/lu.png"
+import tr from "@/public/img/footer/tr.png"
+import ccpe from "@/public/img/footer/ccpe.png"
+import ce from "@/public/img/footer/ce.png"
+import cl from "@/public/img/footer/cl.png"
+import rnews from "@/public/img/footer/rnews.png"
+import unirea from "@/public/img/footer/unirea.png"
+
 
 export const Footer = ()=> {
 
@@ -68,25 +75,29 @@ export const Footer = ()=> {
         </div>
         <div className="flex mx-auto items-center">
           <div className="mx-2">
-            <img src="/img/footer/lu.png" alt="lu"  width={100}/>
+            <Image src={lu} width={100} alt="" />
+            {/*<img src="/img/footer/lu.png" alt="lu"  width={100}/>*/}
           </div>
           <div className="mx-2">
-            <img src="/img/footer/ccpe.png" alt=""  width={100}/>
+            <Image src={ccpe} width={100} alt=""/>
+            {/*<img src="/img/footer/ccpe.png"   width={100}/>*/}
           </div>
           <div className="mx-2">
-            <img src="/img/footer/ce.png" alt=""  width={100}/>
+            <Image src={ce} width={100} alt=""/>
+            {/*<img src="/img/footer/ce.png"   width={100}/>*/}
           </div>
           <div className="mx-2">
-            <img src="/img/footer/cl.png" alt=""  width={100}/>
+            <Image src={cl} width={100} alt=""/>
+            {/*<img src="/img/footer/cl.png"   width={100}/>*/}
           </div>
           <div className="mx-2">
-            <img src="/img/footer/rnews.png" alt=""  width={100}/>
+            <Image src={rnews} alt=""  width={100}/>
           </div>
           <div className="mx-2">
-            <img src="/img/footer/tr.png" alt="" width={100} />
+            <Image src={tr} alt="" width={100} />
           </div>
           <div className="mx-2">
-            <img src="/img/footer/unirea.png" alt=""  width={100}/>
+            <Image src={unirea} alt=""  width={100}/>
           </div>
         </div>
       </div>
